@@ -1,0 +1,23 @@
+body, html {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+.b-gallery {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: relative;
+}
+.b_gallery-b_showImg {
+    width: 100%;
+    height: 80%;
+    border: 1px solid red;
+}
+.b_gallery-b_thumb {
+    width: 100%;
+    height: 80%;
+    border: 1px solid #fff;
+}
