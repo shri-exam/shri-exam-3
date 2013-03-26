@@ -7,18 +7,50 @@ var downloadSetting = {
     param: '&format=json&callback=?'
 };
 var images = [];
-
-var loading = $('<div/>', {
-    class: 'b_gallery-b_thumb-e_loading'
-});
-
+var fullImgId;
+var next = $('<img/>',{
+    src: 'img/next.png',
+    class: 'b_gallery-b_showImg-e_next',
+    alt: 'next',
+    onclick: 'nextFullPhoto()'
+})
+    .css({
+        'position': 'absolute',
+        'width': '80px',
+        'top': '50%',
+        'right': '10px'
+    });
+var prev = $('<img/>',{
+    src: 'img/prev.png',
+    class: 'b_gallery-b_showImg-e_prev',
+    alt: 'prev',
+    onclick: 'prevFullPhoto()'
+})
+    .css({
+        'position': 'absolute',
+        'width': '80px',
+        'top': '50%'
+    });
 //general end
 
 $(document).ready(function () {
 
-    $('.b_gallery-b_thumb').append(loading);
-
     downloadImg();
+
+    $(window).hover(
+        function () {
+            if(fullImgId < images.length - 1) {
+                $('.b_gallery-b_showImg').append(next);
+            }
+            if(fullImgId > 0) {
+                $('.b_gallery-b_showImg').append(prev);
+            }
+        },
+        function () {
+            next.remove();
+            prev.remove();
+        }
+    );
 });
 
 function downloadImg() {
@@ -27,7 +59,7 @@ function downloadImg() {
     $.getJSON(url,function(data){
         for (var i in data.entries)
         {
-            if(i>15) {break;}
+//            if(i>15) {break;}
             var reg = /(\d+)$/g;
             var id = reg.exec(data.entries[i].id);
             var imgObj = {
@@ -57,7 +89,8 @@ function creatThumbImg() {
             src: images[i].thumb,
             class: 'b_gallery-b_thumb-e_img',
             id: i,
-            alt: 'photo '+images[i].id
+            alt: 'photo '+images[i].id,
+            onclick: 'showFullImg('+i+')'
         }));
         $('.b_gallery-b_thumb').append(thumbImg);
     }
@@ -67,6 +100,8 @@ function creatThumbImg() {
 function showFullImg(index) {
 
     index = index || 0;
+
+    $('.b_gallery-b_showImg-e_img').remove();
 
     var fullImg = $('<img/>', {
         src: images[index].fullImg,
@@ -81,4 +116,5 @@ function showFullImg(index) {
         });
 
     $('.b_gallery-b_showImg').append(fullImg);
+    fullImgId = index;
 }
