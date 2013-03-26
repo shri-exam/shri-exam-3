@@ -27,7 +27,7 @@ function downloadImg() {
     $.getJSON(url,function(data){
         for (var i in data.entries)
         {
-            if(i>10) {break;}
+            if(i>15) {break;}
             var reg = /(\d+)$/g;
             var id = reg.exec(data.entries[i].id);
             var imgObj = {
@@ -42,6 +42,7 @@ function downloadImg() {
         }
 
         dfd.done(creatThumbImg());
+        dfd.done(showFullImg());
     });
 }
 
@@ -63,5 +64,21 @@ function creatThumbImg() {
 //    addThumbImg(thumbImg);
 }
 
+function showFullImg(index) {
 
+    index = index || 0;
 
+    var fullImg = $('<img/>', {
+        src: images[index].fullImg,
+        class: 'b_gallery-b_showImg-e_img',
+        alt: 'photo '+images[index].id
+    })
+        .css({
+            'position': 'absolute',
+            'top': '50%',
+            'left': '50%',
+            'margin': '-'+(images[0].height)/2+'px auto auto -'+(images[0].width)/2+'px'
+        });
+
+    $('.b_gallery-b_showImg').append(fullImg);
+}
