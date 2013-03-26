@@ -8,49 +8,33 @@ var downloadSetting = {
 };
 var images = [];
 var fullImgId;
-var next = $('<img/>',{
-    src: 'img/next.png',
-    class: 'b_gallery-b_showImg-e_next',
-    alt: 'next',
-    onclick: 'nextFullPhoto()'
-})
-    .css({
-        'position': 'absolute',
-        'width': '80px',
-        'top': '50%',
-        'right': '10px'
-    });
-var prev = $('<img/>',{
-    src: 'img/prev.png',
-    class: 'b_gallery-b_showImg-e_prev',
-    alt: 'prev',
-    onclick: 'prevFullPhoto()'
-})
-    .css({
-        'position': 'absolute',
-        'width': '80px',
-        'top': '50%'
-    });
+var heightWindow;
+
 //general end
 
 $(document).ready(function () {
 
-    downloadImg();
+    heightWindow = $(window).height();
 
+    downloadImg();
+    var next = $('.b_gallery-b_showImg-e_next');
+    var prev = $('.b_gallery-b_showImg-e_prev');
     $(window).hover(
         function () {
+
             if(fullImgId < images.length - 1) {
-                $('.b_gallery-b_showImg').append(next);
+                next.css('display','block');
             }
             if(fullImgId > 0) {
-                $('.b_gallery-b_showImg').append(prev);
+                prev.css('display','block');
             }
         },
         function () {
-            next.remove();
-            prev.remove();
+            next.css('display','none');
+            prev.css('display','none');
         }
     );
+
 });
 
 function downloadImg() {
@@ -118,3 +102,22 @@ function showFullImg(index) {
     $('.b_gallery-b_showImg').append(fullImg);
     fullImgId = index;
 }
+
+// show/hide thumb begin
+
+$(window).mousemove(function(e) {
+    var y = e.pageY;
+    var h = $(window).height();
+    var heightThumb = $('.b_gallery-b_thumb').height();
+//    alert(heightWindow+'-'+y+'<'+$('.b_gallery-b_thumb').height());
+
+    if(h-y < heightThumb) {
+        $('.b_gallery-b_thumb').css('marginTop','0');
+//        showThumb();
+    } else {
+        $('.b_gallery-b_thumb').css('marginTop','20%');
+//        hideThumb();
+    }
+});
+
+// show/hide  thumb end

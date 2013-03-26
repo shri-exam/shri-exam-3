@@ -13,10 +13,27 @@ body, html {
 }
 .b_gallery-b_showImg {
     width: 100%;
-    height: 77%;
+    height: 80%;
     position: relative;
 }
+.b_gallery-b_showImg-e_next
+{
+    display: none;
+    position: absolute;
+    width: 80px;
+    top: 50%;
+    right: 10px;
+}
+.b_gallery-b_showImg-e_prev
+{
+    display: none;
+    position: absolute;
+    width: 80px;
+    top: 50%;
+    left: 10px;
+}
 .b_gallery-b_thumb {
+    margin-top: 20%;
     height: 20%;
     padding: 10px;
     padding-right: 0;
