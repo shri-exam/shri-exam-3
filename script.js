@@ -1,4 +1,5 @@
 //general begin
+
 var downloadSetting = {
     domen: 'http://api-fotki.yandex.ru',
     user: 'aig1001',
@@ -10,10 +11,17 @@ var images = [];
 var loading = $('<div/>', {
     class: 'b_gallery-b_thumb-e_loading'
 });
+
 //general end
 
-function downloadImg() {
+$(document).ready(function () {
+
     $('.b_gallery-b_thumb').append(loading);
+
+    downloadImg();
+});
+
+function downloadImg() {
     var url = downloadSetting.domen + "/api/users/"+downloadSetting.user+"/album/"+downloadSetting.albumId+"/photos/?"+downloadSetting.param;
     var dfd = $.Deferred();
     $.getJSON(url,function(data){
@@ -28,15 +36,32 @@ function downloadImg() {
                 width : data.entries[i].img.L.width,
                 height : data.entries[i].img.L.height,
                 id: id[1]
-            }
+            };
             images.push(imgObj);
             dfd.resolve();
         }
 
-        dfd.done(test());
+        dfd.done(creatThumbImg());
     });
 }
-downloadImg();
-function test() {
-    alert(images[10].fullImg);
+
+//downloadImg end
+
+function creatThumbImg() {
+
+    var thumbImg;
+
+    for(var i in images){
+        thumbImg=($('<img/>', {
+            src: images[i].thumb,
+            class: 'b_gallery-b_thumb-e_img',
+            id: i,
+            alt: 'photo '+images[i].id
+        }));
+        $('.b_gallery-b_thumb').append(thumbImg);
+    }
+//    addThumbImg(thumbImg);
 }
+
+
+
