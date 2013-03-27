@@ -8,17 +8,16 @@ var downloadSetting = {
 };
 var images = [];
 var fullImgId;
-var heightWindow;
 
 //general end
 
 $(document).ready(function () {
 
-    heightWindow = $(window).height();
-
     downloadImg();
+
     var next = $('.b_gallery-b_showImg-e_next');
     var prev = $('.b_gallery-b_showImg-e_prev');
+
     $(window).hover(
         function () {
 
@@ -43,7 +42,6 @@ function downloadImg() {
     $.getJSON(url,function(data){
         for (var i in data.entries)
         {
-//            if(i>15) {break;}
             var reg = /(\d+)$/g;
             var id = reg.exec(data.entries[i].id);
             var imgObj = {
@@ -69,6 +67,7 @@ function creatThumbImg() {
     var thumbImg;
 
     for(var i in images){
+        if(i>15){break;}
         thumbImg=($('<img/>', {
             src: images[i].thumb,
             class: 'b_gallery-b_thumb-e_img',
@@ -78,7 +77,6 @@ function creatThumbImg() {
         }));
         $('.b_gallery-b_thumb').append(thumbImg);
     }
-//    addThumbImg(thumbImg);
 }
 
 function showFullImg(index) {
@@ -109,15 +107,32 @@ $(window).mousemove(function(e) {
     var y = e.pageY;
     var h = $(window).height();
     var heightThumb = $('.b_gallery-b_thumb').height();
-//    alert(heightWindow+'-'+y+'<'+$('.b_gallery-b_thumb').height());
 
     if(h-y < heightThumb) {
         $('.b_gallery-b_thumb').css('marginTop','0');
-//        showThumb();
     } else {
         $('.b_gallery-b_thumb').css('marginTop','20%');
-//        hideThumb();
     }
 });
 
-// show/hide  thumb end
+// show/hide thumb end
+
+// thumb scroll begin
+
+var mouse_wheel = function (event) {
+
+    if (false == !!event) event = window.event;
+    var direction = ((event.wheelDelta) ? event.wheelDelta/120 : event.detail/-3) || false;
+
+    if (direction) {
+        $('.b_gallery-b_thumb').scrollTo(direction < 0 ? '+=80px' : '-=80px', 30);
+    }
+};
+
+function scroll() {
+
+    if (window.addEventListener) window.addEventListener("DOMMouseScroll", mouse_wheel, false);
+    window.onmousewheel = document.onmousewheel = mouse_wheel;
+
+}
+// thumb scroll end
