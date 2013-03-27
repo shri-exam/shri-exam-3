@@ -55,8 +55,8 @@ function downloadImg() {
             dfd.resolve();
         }
 
-        dfd.done(creatThumbImg());
-        dfd.done(showFullImg());
+        creatThumbImg();
+        showFullImg();
     });
 }
 
@@ -94,7 +94,7 @@ function showFullImg(index) {
             'position': 'absolute',
             'top': '50%',
             'left': '50%',
-            'margin': '-'+(images[0].height)/2+'px auto auto -'+(images[0].width)/2+'px'
+            'margin': '-'+(images[index].height)/2+'px auto auto -'+(images[index].width)/2+'px'
         });
 
     $('.b_gallery-b_showImg').append(fullImg);
@@ -125,7 +125,7 @@ var mouse_wheel = function (event) {
     var direction = ((event.wheelDelta) ? event.wheelDelta/120 : event.detail/-3) || false;
 
     if (direction) {
-        $('.b_gallery-b_thumb').scrollTo(direction < 0 ? '+=80px' : '-=80px', 30);
+        $('.b_gallery-b_thumb').scrollTo((direction < 0)?'+=80px':'-=80px', 30);
     }
 };
 

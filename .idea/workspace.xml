@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90fd5a67-0101-434b-888d-7267ea752bdf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script.js" afterPath="$PROJECT_DIR$/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="my.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364381279941" ignored="false" />
-    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364390994146" ignored="false" />
+    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364403606119" ignored="false" />
     <file path="/style.css" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364391856506" ignored="false" />
     <file path="/gallery.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364385533267" ignored="false" />
     <file path="/index.html" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364390803039" ignored="false" />
@@ -36,25 +33,25 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="16" selection-start="701" selection-end="718" vertical-scroll-proportion="-11.25">
+            <state line="9" column="37" selection-start="383" selection-end="383" vertical-scroll-proportion="-5.625">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="23" selection-start="742" selection-end="742" vertical-scroll-proportion="0.0">
+            <state line="43" column="23" selection-start="742" selection-end="742" vertical-scroll-proportion="0.59517044">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="script.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="script.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="9" selection-start="1017" selection-end="1017" vertical-scroll-proportion="0.08522727">
+            <state line="97" column="11" selection-start="2389" selection-end="2389" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -335,21 +332,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="16" selection-start="701" selection-end="718" vertical-scroll-proportion="-11.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="23" selection-start="742" selection-end="742" vertical-scroll-proportion="0.0">
+        <state line="9" column="37" selection-start="383" selection-end="383" vertical-scroll-proportion="-5.625">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="9" selection-start="1017" selection-end="1017" vertical-scroll-proportion="0.08522727">
+        <state line="97" column="11" selection-start="2389" selection-end="2389" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="23" selection-start="742" selection-end="742" vertical-scroll-proportion="0.59517044">
           <folding />
         </state>
       </provider>
