@@ -3,23 +3,19 @@
 <head>
     <meta charset="utf-8">
     <title>Галерея | Ляутин Вячеслав</title>
-
     <link href="style.css" type="text/css" rel="stylesheet" />
     <script src="http://yandex.st/jquery/1.9.1/jquery.js"></script>
     <script src="http://www.xiper.net/examples/js-plugins/effects/scrollto/js/jquery.scrollTo-min.js"></script>
     <script src="script.js"></script>
 </head>
 <body>
-
 <div class="b-gallery">
     <div class="b_gallery-b_showImg">
-        <img class='b_gallery-b_showImg-e_next' src="img/next.png" alt="next" onclick= 'nextFullPhoto()'>
-        <img class='b_gallery-b_showImg-e_prev' src="img/prev.png" alt="prev" onclick= 'prevFullPhoto()'>
+        <img class='b_gallery-b_showImg-e_next' src="img/next.png" alt="next" onclick= "shift(1)">
+        <img class='b_gallery-b_showImg-e_prev' src="img/prev.png" alt="prev" onclick= "shift(-1)">
     </div>
     <div class="b_gallery-b_thumb" onmouseover="scroll()">
-
     </div>
 </div>
-
 </body>
 </html>

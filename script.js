@@ -7,13 +7,19 @@ var downloadSetting = {
     param: '&format=json&callback=?'
 };
 var images = [];
+var showImg;
+var thumb;
+var fullImg;
 var fullImgId;
-
-//general end
+var fullImgW;
+var fullImgH;
 
 $(document).ready(function () {
 
     downloadImg();
+
+    showImg = $('.b_gallery-b_showImg');
+    thumb = $('.b_gallery-b_thumb');
 
     var next = $('.b_gallery-b_showImg-e_next');
     var prev = $('.b_gallery-b_showImg-e_prev');
@@ -36,6 +42,8 @@ $(document).ready(function () {
 
 });
 
+//general end
+
 function downloadImg() {
     var url = downloadSetting.domen + "/api/users/"+downloadSetting.user+"/album/"+downloadSetting.albumId+"/photos/?"+downloadSetting.param;
     var dfd = $.Deferred();
@@ -56,11 +64,9 @@ function downloadImg() {
         }
 
         creatThumbImg();
-        showFullImg();
+        showFullImg(getCookie('fullImgId'));
     });
 }
-
-//downloadImg end
 
 function creatThumbImg() {
 
@@ -75,11 +81,12 @@ function creatThumbImg() {
             alt: 'photo '+images[i].id,
             onclick: 'showFullImg('+i+')'
         }));
-        $('.b_gallery-b_thumb').append(thumbImg);
+        thumb.append(thumbImg);
     }
 }
 
 function showFullImg(index) {
+
 
     index = index || 0;
 
@@ -88,7 +95,8 @@ function showFullImg(index) {
     var fullImg = $('<img/>', {
         src: images[index].fullImg,
         class: 'b_gallery-b_showImg-e_img',
-        alt: 'photo '+images[index].id
+        alt: 'photo '+images[index].id,
+        onload: "getInfoFullImg()"
     })
         .css({
             'position': 'absolute',
@@ -97,8 +105,13 @@ function showFullImg(index) {
             'margin': '-'+(images[index].height)/2+'px auto auto -'+(images[index].width)/2+'px'
         });
 
-    $('.b_gallery-b_showImg').append(fullImg);
+    showImg.append(fullImg);
     fullImgId = index;
+    setCookie('fullImgId',fullImgId);
+}
+
+function shift(how) {
+    showFullImg(fullImgId+how);
 }
 
 // show/hide thumb begin
@@ -106,12 +119,12 @@ function showFullImg(index) {
 $(window).mousemove(function(e) {
     var y = e.pageY;
     var h = $(window).height();
-    var heightThumb = $('.b_gallery-b_thumb').height();
+    var heightThumb = thumb.height();
 
     if(h-y < heightThumb) {
-        $('.b_gallery-b_thumb').css('marginTop','0');
+        thumb.css('marginTop','0');
     } else {
-        $('.b_gallery-b_thumb').css('marginTop','20%');
+        thumb.css('marginTop','20%');
     }
 });
 
@@ -125,7 +138,7 @@ var mouse_wheel = function (event) {
     var direction = ((event.wheelDelta) ? event.wheelDelta/120 : event.detail/-3) || false;
 
     if (direction) {
-        $('.b_gallery-b_thumb').scrollTo((direction < 0)?'+=80px':'-=80px', 30);
+        thumb.scrollTo((direction < 0)?'+=80px':'-=80px', 30);
     }
 };
 
@@ -136,3 +149,82 @@ function scroll() {
 
 }
 // thumb scroll end
+
+//align fullImg begin
+
+function getInfoFullImg() {
+    fullImg = $('.b_gallery-b_showImg-e_img');
+    fullImgW = fullImg.width();
+    fullImgH = fullImg.height();
+    resizeFullImg();
+}
+function alignFullImg(w, h) {
+    fullImg.css('margin','-'+(h/2)+'px auto auto -'+(w/2)+'px');
+}
+
+//align fullImg end
+
+
+// resizing fullImg begin
+
+$(window).resize(function(){
+    resizeFullImg();
+});
+
+function resizeFullImg() {
+    var winW = showImg.width();
+    var winH = showImg.height();
+
+    if(winW < fullImgW || winH < fullImgH) {
+        if((fullImgW/fullImgH) < (winW/winH)) {
+            fullImg.width(winH * (fullImgW/fullImgH));
+            fullImg.height(winH);
+            alignFullImg((winH * (fullImgW/fullImgH)),winH);
+        }else {
+            fullImg.width(winW);
+            fullImg.height(winW / (fullImgW/fullImgH));
+            alignFullImg(winW,(winW / (fullImgW/fullImgH)));
+        }
+    }else {
+        fullImg.width(fullImgW);
+        fullImg.height(fullImgH);
+        alignFullImg(fullImgW,fullImgH);
+    }
+}
+// resizing fullImg end
+
+// fullImg in coockie begin
+// уcтанавливает cookie
+
+// возвращает cookie если есть или undefined
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ))
+    return matches ? decodeURIComponent(matches[1]) : undefined
+}
+
+// уcтанавливает cookie
+
+function setCookie(name, value, props) {
+    props = props || {}
+    var exp = props.expires
+    if (typeof exp == "number" && exp) {
+        var d = new Date()
+        d.setTime(d.getTime() + exp*1000)
+        exp = props.expires = d
+    }
+    if(exp && exp.toUTCString) { props.expires = exp.toUTCString() }
+
+    value = encodeURIComponent(value)
+    var updatedCookie = name + "=" + value
+    for(var propName in props){
+        updatedCookie += "; " + propName
+        var propValue = props[propName]
+        if(propValue !== true){ updatedCookie += "=" + propValue }
+    }
+    document.cookie = updatedCookie
+
+}
+
+// fullImg in coockie end
