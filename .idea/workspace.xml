@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90fd5a67-0101-434b-888d-7267ea752bdf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script.js" afterPath="$PROJECT_DIR$/script.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="my.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364469400477" ignored="false" />
-    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364476009482" ignored="false" />
-    <file path="/style.css" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364391856506" ignored="false" />
-    <file path="/gallery.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364385533267" ignored="false" />
+    <file path="/Dummy.txt" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364562382956" ignored="false" />
+    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364592172656" ignored="false" />
+    <file path="/style.css" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364572876602" ignored="false" />
+    <file path="/gallery.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364577742278" ignored="false" />
     <file path="/index.html" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364473601802" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +35,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="96" selection-start="655" selection-end="655" vertical-scroll-proportion="-8.75">
+            <state line="16" column="33" selection-start="686" selection-end="703" vertical-scroll-proportion="-10.0">
               <folding />
             </state>
           </provider>
@@ -44,7 +44,7 @@
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="22" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0">
+            <state line="33" column="0" selection-start="601" selection-end="601" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -53,7 +53,16 @@
       <file leaf-file-name="script.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="37" selection-start="2646" selection-end="2646" vertical-scroll-proportion="0.59659094">
+            <state line="240" column="50" selection-start="6634" selection-end="6634" vertical-scroll-proportion="0.8453608">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EcmaScript5.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="52" column="7" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -62,7 +71,7 @@
       <file leaf-file-name="gallery.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../tormozz/js/gallery.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="674" column="0" selection-start="19223" selection-end="19223" vertical-scroll-proportion="-8.56">
+            <state line="58" column="36" selection-start="1237" selection-end="1252" vertical-scroll-proportion="-12.64">
               <folding />
             </state>
           </provider>
@@ -71,7 +80,7 @@
       <file leaf-file-name="script.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../bahek/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="22" selection-start="3480" selection-end="3480" vertical-scroll-proportion="0.0">
+            <state line="263" column="41" selection-start="10591" selection-end="10591" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -99,9 +108,9 @@
         <option value="$PROJECT_DIR$/../../test/index.html" />
         <option value="$PROJECT_DIR$/../bahek/script.js" />
         <option value="$PROJECT_DIR$/../tormozz/js/jquery_scroll_to.js" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/../tormozz/js/gallery.js" />
         <option value="$PROJECT_DIR$/style.css" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/script.js" />
       </list>
     </option>
@@ -137,6 +146,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -157,12 +167,11 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../bahek/script.js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tormozz/js/gallery.js" />
   </component>
   <component name="RunManager">
     <list size="0" />
@@ -182,8 +191,8 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32968536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14467184" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15949188" sideWeight="0.6703146" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14467184" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15949188" sideWeight="0.6703146" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956952" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -259,20 +268,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../bahek/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="19" selection-start="2380" selection-end="2395" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tormozz/js/gallery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="383" column="25" selection-start="11601" selection-end="11622" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="17" selection-start="470" selection-end="470" vertical-scroll-proportion="0.0">
@@ -324,37 +319,51 @@
         <state line="13" column="56" selection-start="552" selection-end="552" vertical-scroll-proportion="-8.125" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/../bahek/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="96" selection-start="655" selection-end="655" vertical-scroll-proportion="-8.75">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="22" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../bahek/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="22" selection-start="3480" selection-end="3480" vertical-scroll-proportion="0.0">
+        <state line="263" column="41" selection-start="10591" selection-end="10591" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../tormozz/js/gallery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="674" column="0" selection-start="19223" selection-end="19223" vertical-scroll-proportion="-8.56">
+        <state line="58" column="36" selection-start="1237" selection-end="1252" vertical-scroll-proportion="-12.64">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="7" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="33" selection-start="686" selection-end="703" vertical-scroll-proportion="-10.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="0" selection-start="601" selection-end="601" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="37" selection-start="2646" selection-end="2646" vertical-scroll-proportion="0.59659094">
+        <state line="240" column="50" selection-start="6634" selection-end="6634" vertical-scroll-proportion="0.8453608">
           <folding />
         </state>
       </provider>

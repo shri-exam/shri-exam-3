@@ -7,18 +7,24 @@ var downloadSetting = {
     param: '&format=json&callback=?'
 };
 var images = [];
-var showImg;
-var thumb;
-var fullImg;
-var fullImgId;
-var fullImgW;
-var fullImgH;
+var fullImgWrap,
+    fullImg,
+    thumb,
+    currentImgId,
+    winW, winH,
+    fullImgWrapW, fullImgWrapH,
+    fullImgW, fullImgH,
+    thumbW, thumbH;
+
 
 $(document).ready(function () {
+    $.when( downloadImg() )
+        .done(function(){
+            showFullImg(getCookie('currentImgId'));
+            creatThumbImg();
+        });
 
-    downloadImg();
-
-    showImg = $('.b_gallery-b_showImg');
+    fullImgWrap = $('.b_gallery-b_showImg');
     thumb = $('.b_gallery-b_thumb');
 
     var next = $('.b_gallery-b_showImg-e_next');
@@ -26,11 +32,10 @@ $(document).ready(function () {
 
     $(window).hover(
         function () {
-
-            if(fullImgId < images.length - 1) {
+            if(currentImgId < images.length - 1) {
                 next.css('display','block');
             }
-            if(fullImgId > 0) {
+            if(currentImgId > 0) {
                 prev.css('display','block');
             }
         },
@@ -39,64 +44,68 @@ $(document).ready(function () {
             prev.css('display','none');
         }
     );
-
 });
 
 //general end
 
 function downloadImg() {
-    var url = downloadSetting.domen + "/api/users/"+downloadSetting.user+"/album/"+downloadSetting.albumId+"/photos/?"+downloadSetting.param;
+    console.log('downloadImg');
     var dfd = $.Deferred();
-    $.getJSON(url,function(data){
-        for (var i in data.entries)
-        {
-            var reg = /(\d+)$/g;
-            var id = reg.exec(data.entries[i].id);
-            var imgObj = {
-                thumb : data.entries[i].img.S.href,
-                fullImg : data.entries[i].img.L.href,
-                width : data.entries[i].img.L.width,
-                height : data.entries[i].img.L.height,
-                id: id[1]
-            };
-            images.push(imgObj);
-            dfd.resolve();
-        }
+    var url = downloadSetting.domen + "/api/users/"+downloadSetting.user+"/album/"+downloadSetting.albumId+"/photos/?"+downloadSetting.param;
 
-        creatThumbImg();
-        showFullImg(getCookie('fullImgId'));
-    });
+    var req = $.getJSON(url)
+        .success(function( response ){
+            for (var i in response.entries)
+            {
+                if(i>15) {break;}
+//                var reg = /(\d+)$/g;
+//                var id = reg.exec(response.entries[i].id);              //  Удалить за ненадобностью...
+                var imgObj = {
+                    thumb : response.entries[i].img.S.href,
+                    fullImg : response.entries[i].img.L.href,
+                    width : response.entries[i].img.L.width,
+                    height : response.entries[i].img.L.height
+//                    id: id[1]                                         //  Удалить за ненадобностью...
+                };
+                images.push(imgObj);
+            }
+            dfd.resolve();
+        })
+        .error(function(){
+            console.log('getJSON fail !');
+            alert('Проблемы с сервером фото!');
+            dfd.reject();
+        });
+    return dfd.promise();
 }
 
 function creatThumbImg() {
-
+    console.log('creatThumbImg');
     var thumbImg;
-
     for(var i in images){
-        if(i>15){break;}
         thumbImg=($('<img/>', {
             src: images[i].thumb,
             class: 'b_gallery-b_thumb-e_img',
             id: i,
-            alt: 'photo '+images[i].id,
-            onclick: 'showFullImg('+i+')'
+            alt: 'photo '+i,
+            onclick: 'showFullImg('+i+'); centeringThumbImg('+i+')'
         }));
         thumb.append(thumbImg);
     }
+    return centeringThumbImg(getCookie('currentImgId'));
 }
 
 function showFullImg(index) {
-
-
+    console.log('showFullImg');
     index = index || 0;
 
     $('.b_gallery-b_showImg-e_img').remove();
 
-    var fullImg = $('<img/>', {
+    fullImg = $('<img/>', {
         src: images[index].fullImg,
         class: 'b_gallery-b_showImg-e_img',
-        alt: 'photo '+images[index].id,
-        onload: "getInfoFullImg()"
+        alt: 'photo '+index,
+        onload: "getInfo()"
     })
         .css({
             'position': 'absolute',
@@ -105,29 +114,28 @@ function showFullImg(index) {
             'margin': '-'+(images[index].height)/2+'px auto auto -'+(images[index].width)/2+'px'
         });
 
-    showImg.append(fullImg);
-    fullImgId = index;
-    setCookie('fullImgId',fullImgId);
+    fullImgWrap.append(fullImg);
+    setCookie('currentImgId',index);
+    currentImgId = Number(index);
 }
 
 function shift(how) {
-    showFullImg(fullImgId+how);
+    showFullImg(currentImgId+how);
 }
 
 // show/hide thumb begin
-
 $(window).mousemove(function(e) {
+    if(!thumb) {return false;}
+    winH = $(window).height();
+    thumbH = $('.b_gallery-b_thumb').height();
     var y = e.pageY;
-    var h = $(window).height();
-    var heightThumb = thumb.height();
 
-    if(h-y < heightThumb) {
+    if(winH-y < thumbH) {
         thumb.css('marginTop','0');
     } else {
         thumb.css('marginTop','20%');
     }
 });
-
 // show/hide thumb end
 
 // thumb scroll begin
@@ -138,7 +146,7 @@ var mouse_wheel = function (event) {
     var direction = ((event.wheelDelta) ? event.wheelDelta/120 : event.detail/-3) || false;
 
     if (direction) {
-        thumb.scrollTo((direction < 0)?'+=80px':'-=80px', 30);
+        thumb.scrollTo((direction < 0)?'-=80px':'+=80px', 30);
     }
 };
 
@@ -150,20 +158,16 @@ function scroll() {
 }
 // thumb scroll end
 
-//align fullImg begin
-
-function getInfoFullImg() {
-    fullImg = $('.b_gallery-b_showImg-e_img');
+function getInfo() {
+    console.log('getInfo');
     fullImgW = fullImg.width();
     fullImgH = fullImg.height();
-    resizeFullImg();
+    return resizeFullImg();
 }
+
 function alignFullImg(w, h) {
     fullImg.css('margin','-'+(h/2)+'px auto auto -'+(w/2)+'px');
 }
-
-//align fullImg end
-
 
 // resizing fullImg begin
 
@@ -172,18 +176,25 @@ $(window).resize(function(){
 });
 
 function resizeFullImg() {
-    var winW = showImg.width();
-    var winH = showImg.height();
+    if(!fullImg) {return false;}
 
-    if(winW < fullImgW || winH < fullImgH) {
-        if((fullImgW/fullImgH) < (winW/winH)) {
-            fullImg.width(winH * (fullImgW/fullImgH));
-            fullImg.height(winH);
-            alignFullImg((winH * (fullImgW/fullImgH)),winH);
+    console.log('resizeFullImg');
+    winW = $(window).width();
+    winH = $(window).height();
+    fullImgWrapW = fullImgWrap.width();
+    fullImgWrapH = fullImgWrap.height();
+    thumbW = thumb.width();
+    thumbH = thumb.height();
+
+    if(fullImgWrapW < fullImgW || fullImgWrapH < fullImgH) {
+        if((fullImgW/fullImgH) < (fullImgWrapW/fullImgWrapH)) {
+            fullImg.width(fullImgWrapH * (fullImgW/fullImgH));
+            fullImg.height(fullImgWrapH);
+            alignFullImg((fullImgWrapH * (fullImgW/fullImgH)),fullImgWrapH);
         }else {
-            fullImg.width(winW);
-            fullImg.height(winW / (fullImgW/fullImgH));
-            alignFullImg(winW,(winW / (fullImgW/fullImgH)));
+            fullImg.width(fullImgWrapW);
+            fullImg.height(fullImgWrapW / (fullImgW/fullImgH));
+            alignFullImg(fullImgWrapW,(fullImgWrapW / (fullImgW/fullImgH)));
         }
     }else {
         fullImg.width(fullImgW);
@@ -194,37 +205,38 @@ function resizeFullImg() {
 // resizing fullImg end
 
 // fullImg in coockie begin
-// уcтанавливает cookie
 
-// возвращает cookie если есть или undefined
 function getCookie(name) {
     var matches = document.cookie.match(new RegExp(
         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ))
+    ));
     return matches ? decodeURIComponent(matches[1]) : undefined
 }
 
-// уcтанавливает cookie
-
 function setCookie(name, value, props) {
-    props = props || {}
+    props = props || {};
     var exp = props.expires
     if (typeof exp == "number" && exp) {
-        var d = new Date()
-        d.setTime(d.getTime() + exp*1000)
-        exp = props.expires = d
+        var d = new Date();
+        d.setTime(d.getTime() + exp*1000);
+        exp = props.expires = d;
     }
     if(exp && exp.toUTCString) { props.expires = exp.toUTCString() }
 
-    value = encodeURIComponent(value)
-    var updatedCookie = name + "=" + value
+    value = encodeURIComponent(value);
+    var updatedCookie = name + "=" + value;
     for(var propName in props){
-        updatedCookie += "; " + propName
-        var propValue = props[propName]
+        updatedCookie += "; " + propName;
+        var propValue = props[propName];
         if(propValue !== true){ updatedCookie += "=" + propValue }
     }
-    document.cookie = updatedCookie
+    document.cookie = updatedCookie;
 
 }
-
 // fullImg in coockie end
+
+function centeringThumbImg(index) {
+    console.log('centeringThumbImg');
+    if(!thumb) {return false;}
+    thumb.scrollTo('img#'+index, 500, {axis:'x'});
+}

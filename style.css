@@ -16,22 +16,22 @@ body, html {
     height: 80%;
     position: relative;
 }
-.b_gallery-b_showImg-e_next
-{
-    display: none;
-    position: absolute;
-    width: 80px;
-    top: 50%;
-    right: 10px;
-}
+.b_gallery-b_showImg-e_next,
 .b_gallery-b_showImg-e_prev
 {
     display: none;
     position: absolute;
     width: 80px;
     top: 50%;
-    left: 10px;
 }
+.b_gallery-b_showImg-e_next:hover,
+.b_gallery-b_showImg-e_prev:hover
+{
+    cursor: pointer;
+}
+.b_gallery-b_showImg-e_next {right: 10px;}
+.b_gallery-b_showImg-e_prev{left: 10px;}
+
 .b_gallery-b_thumb {
     margin-top: 20%;
     margin-left: 1%;
