@@ -15,13 +15,18 @@ var fullImgWrap,
     fullImgWrapW, fullImgWrapH,
     fullImgW, fullImgH,
     thumbW, thumbH;
+var thumbLoad = $.Deferred();
 
 
 $(document).ready(function () {
+    currentImgId = getCookie('currentImgId');
+
     $.when( downloadImg() )
         .done(function(){
-            showFullImg(getCookie('currentImgId'));
-            creatThumbImg();
+            showFullImg(currentImgId);
+            creatThumbImg().load(function(){
+                centeringThumbImg(currentImgId);
+            });
         });
 
     fullImgWrap = $('.b_gallery-b_showImg');
@@ -50,7 +55,6 @@ $(document).ready(function () {
 
 function downloadImg() {
     console.log('downloadImg');
-    var dfd = $.Deferred();
     var url = downloadSetting.domen + "/api/users/"+downloadSetting.user+"/album/"+downloadSetting.albumId+"/photos/?"+downloadSetting.param;
 
     var req = $.getJSON(url)
@@ -58,25 +62,20 @@ function downloadImg() {
             for (var i in response.entries)
             {
                 if(i>15) {break;}
-//                var reg = /(\d+)$/g;
-//                var id = reg.exec(response.entries[i].id);              //  Удалить за ненадобностью...
                 var imgObj = {
                     thumb : response.entries[i].img.S.href,
                     fullImg : response.entries[i].img.L.href,
                     width : response.entries[i].img.L.width,
                     height : response.entries[i].img.L.height
-//                    id: id[1]                                         //  Удалить за ненадобностью...
                 };
                 images.push(imgObj);
             }
-            dfd.resolve();
         })
         .error(function(){
             console.log('getJSON fail !');
             alert('Проблемы с сервером фото!');
-            dfd.reject();
         });
-    return dfd.promise();
+    return req;
 }
 
 function creatThumbImg() {
@@ -88,11 +87,11 @@ function creatThumbImg() {
             class: 'b_gallery-b_thumb-e_img',
             id: i,
             alt: 'photo '+i,
-            onclick: 'showFullImg('+i+'); centeringThumbImg('+i+')'
+            onclick: 'shift(null, '+i+')'
         }));
         thumb.append(thumbImg);
     }
-    return centeringThumbImg(getCookie('currentImgId'));
+    return thumbImg;
 }
 
 function showFullImg(index) {
@@ -113,14 +112,16 @@ function showFullImg(index) {
             'left': '50%',
             'margin': '-'+(images[index].height)/2+'px auto auto -'+(images[index].width)/2+'px'
         });
-
     fullImgWrap.append(fullImg);
     setCookie('currentImgId',index);
     currentImgId = Number(index);
 }
 
-function shift(how) {
-    showFullImg(currentImgId+how);
+function shift(how, index) {
+    index = index || currentImgId+how;
+    console.log('shift to '+index);
+    showFullImg(index);
+    centeringThumbImg(index);
 }
 
 // show/hide thumb begin
@@ -236,7 +237,6 @@ function setCookie(name, value, props) {
 // fullImg in coockie end
 
 function centeringThumbImg(index) {
-    console.log('centeringThumbImg');
-    if(!thumb) {return false;}
-    thumb.scrollTo('img#'+index, 500, {axis:'x'});
+    console.log('centeringThumbImg '+index);
+    thumb.scrollTo('img#'+index, 500);
 }
