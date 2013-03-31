@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90fd5a67-0101-434b-888d-7267ea752bdf" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/next.png" afterPath="$PROJECT_DIR$/img/next.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/prev.png" afterPath="$PROJECT_DIR$/img/prev.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script.js" afterPath="$PROJECT_DIR$/script.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="my.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364724524608" ignored="false" />
-    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364728959230" ignored="false" />
-    <file path="/style.css" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364641460972" ignored="false" />
+    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364757365580" ignored="false" />
+    <file path="/style.css" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364756883942" ignored="false" />
     <file path="/gallery.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364577742278" ignored="false" />
     <file path="/index.html" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364473601802" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,29 +37,30 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="95" selection-start="555" selection-end="555" vertical-scroll-proportion="-8.125">
+            <state line="16" column="16" selection-start="686" selection-end="703" vertical-scroll-proportion="-10.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="23" selection-start="930" selection-end="930" vertical-scroll-proportion="0.0">
+            <state line="60" column="22" selection-start="1037" selection-end="1037" vertical-scroll-proportion="0.85085225">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="script.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="script.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="243" column="35" selection-start="6540" selection-end="6540" vertical-scroll-proportion="0.65909094">
+            <state line="186" column="36" selection-start="5266" selection-end="5266" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="n#!!block;n#showFullImg#0" expanded="false" />
-                <element signature="e#3331#3584#0" expanded="false" />
-                <element signature="e#3669#3904#0" expanded="false" />
+                <element signature="n#!!block;n#downloadImg#0" expanded="false" />
+                <element signature="n#!!block;n#creatThumbImg#0" expanded="false" />
+                <element signature="n#!!block;n#animateFullImg#0" expanded="false" />
+                <element signature="n#!!block;n#getInfo#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -65,7 +69,7 @@
       <file leaf-file-name="gallery.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../tormozz/js/gallery.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="210" column="20" selection-start="6016" selection-end="6032" vertical-scroll-proportion="0.0">
+            <state line="106" column="73" selection-start="2591" selection-end="2601" vertical-scroll-proportion="-7.96">
               <folding />
             </state>
           </provider>
@@ -74,7 +78,7 @@
       <file leaf-file-name="script.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../bahek/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="262" column="35" selection-start="10534" selection-end="10548" vertical-scroll-proportion="-8.88">
+            <state line="266" column="35" selection-start="10534" selection-end="10548" vertical-scroll-proportion="-8.88">
               <folding />
             </state>
           </provider>
@@ -103,9 +107,9 @@
         <option value="$PROJECT_DIR$/../bahek/script.js" />
         <option value="$PROJECT_DIR$/../tormozz/js/jquery_scroll_to.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/style.css" />
         <option value="$PROJECT_DIR$/../tormozz/js/gallery.js" />
         <option value="$PROJECT_DIR$/script.js" />
+        <option value="$PROJECT_DIR$/style.css" />
       </list>
     </option>
   </component>
@@ -259,9 +263,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="33" selection-start="668" selection-end="668" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="n#!!block;n#showFullImg#0" expanded="false" />
-            <element signature="e#3331#3584#0" expanded="false" />
-            <element signature="e#3669#3904#0" expanded="false" />
+            <element signature="n#!!block;n#downloadImg#0" expanded="false" />
+            <element signature="n#!!block;n#creatThumbImg#0" expanded="false" />
+            <element signature="n#!!block;n#animateFullImg#0" expanded="false" />
+            <element signature="n#!!block;n#getInfo#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -308,6 +313,20 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../bahek/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="266" column="35" selection-start="10534" selection-end="10548" vertical-scroll-proportion="-8.88">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="16" selection-start="686" selection-end="703" vertical-scroll-proportion="-10.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="52" column="7" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0">
@@ -317,40 +336,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../tormozz/js/gallery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="210" column="20" selection-start="6016" selection-end="6032" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="23" selection-start="930" selection-end="930" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="95" selection-start="555" selection-end="555" vertical-scroll-proportion="-8.125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../bahek/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="262" column="35" selection-start="10534" selection-end="10548" vertical-scroll-proportion="-8.88">
+        <state line="106" column="73" selection-start="2591" selection-end="2601" vertical-scroll-proportion="-7.96">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="243" column="35" selection-start="6540" selection-end="6540" vertical-scroll-proportion="0.65909094">
+        <state line="186" column="36" selection-start="5266" selection-end="5266" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="n#!!block;n#showFullImg#0" expanded="false" />
-            <element signature="e#3331#3584#0" expanded="false" />
-            <element signature="e#3669#3904#0" expanded="false" />
+            <element signature="n#!!block;n#downloadImg#0" expanded="false" />
+            <element signature="n#!!block;n#creatThumbImg#0" expanded="false" />
+            <element signature="n#!!block;n#animateFullImg#0" expanded="false" />
+            <element signature="n#!!block;n#getInfo#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="22" selection-start="1037" selection-end="1037" vertical-scroll-proportion="0.85085225">
+          <folding />
         </state>
       </provider>
     </entry>
