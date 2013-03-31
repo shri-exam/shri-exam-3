@@ -21,6 +21,8 @@ var fullImgWrap,
 
 $(document).ready(function () {
     currentImgId = getCookie('currentImgId');
+    fullImgWrap = $('.b_gallery-b_showImg');
+    thumb = $('.b_gallery-b_thumb');
 
     $.when( downloadImg() )
         .done(function(){
@@ -33,9 +35,6 @@ $(document).ready(function () {
                 centeringThumbImg(currentImgId);
             });
         });
-
-    fullImgWrap = $('.b_gallery-b_showImg');
-    thumb = $('.b_gallery-b_thumb');
 
     next = $('.b_gallery-b_showImg-e_next');
     prev = $('.b_gallery-b_showImg-e_prev');
@@ -178,16 +177,15 @@ function shift(how, index) {
 }
 
 function redrawArrows() {
-    console.log('redrawArrows');
     if(currentImgId == 0){
-        prev.css('display','none');
-        next.css('display','block');
+        prev.hide(500);
+        next.show(500);
     }else if(currentImgId == images.length - 1){
-        next.css('display','none');
-        prev.css('display','block');
+        next.hide(500);
+        prev.show(500);
     }else{
-        next.css('display','block');
-        prev.css('display','block');
+        next.show(500);
+        prev.show(500);
     }
 }
 
@@ -224,8 +222,9 @@ var mouse_wheel = function (event) {
 };
 
 function scroll() {
-    if (window.addEventListener) window.addEventListener("DOMMouseScroll", mouse_wheel, false);
-    window.onmousewheel = document.onmousewheel = mouse_wheel;
+    var scrl = document.getElementsByClassName('b_gallery-b_thumb');
+    if (scrl[0].addEventListener) scrl[0].addEventListener("DOMMouseScroll", mouse_wheel, false);
+    scrl[0].onmousewheel = mouse_wheel;
 }
 
 // thumb scroll end
