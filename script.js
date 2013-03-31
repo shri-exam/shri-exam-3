@@ -238,5 +238,17 @@ function setCookie(name, value, props) {
 
 function centeringThumbImg(index) {
     console.log('centeringThumbImg '+index);
-    thumb.scrollTo('img#'+index, 500);
+    var img = $('img#'+index);
+    var centerThumb = (thumbW/2);
+    var centerImg = (img.width()/2);
+    var offset = img.offset().left;
+    if(offset < centerThumb) {
+        var scroll = centerThumb-offset-centerImg;
+        console.log(scroll);
+        thumb.scrollTo('-='+scroll, 500);
+    }else{
+        var scroll = (offset-centerThumb)+centerImg;
+        console.log(scroll);
+        thumb.scrollTo('+='+scroll, 500);
+    }
 }

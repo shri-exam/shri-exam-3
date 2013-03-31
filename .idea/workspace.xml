@@ -3,13 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="90fd5a67-0101-434b-888d-7267ea752bdf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script.js" afterPath="$PROJECT_DIR$/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="my.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364649398087" ignored="false" />
-    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364651811080" ignored="false" />
+    <file path="/Dummy.txt" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364724524608" ignored="false" />
+    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364728959230" ignored="false" />
     <file path="/style.css" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364641460972" ignored="false" />
     <file path="/gallery.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364577742278" ignored="false" />
     <file path="/index.html" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364473601802" ignored="false" />
@@ -53,7 +52,7 @@
       <file leaf-file-name="script.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="239" column="44" selection-start="6402" selection-end="6402" vertical-scroll-proportion="0.82954544">
+            <state line="243" column="35" selection-start="6540" selection-end="6540" vertical-scroll-proportion="0.65909094">
               <folding>
                 <element signature="n#!!block;n#showFullImg#0" expanded="false" />
                 <element signature="e#3331#3584#0" expanded="false" />
@@ -66,7 +65,7 @@
       <file leaf-file-name="gallery.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../tormozz/js/gallery.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="210" column="20" selection-start="6016" selection-end="6032" vertical-scroll-proportion="-9.04">
+            <state line="210" column="20" selection-start="6016" selection-end="6032" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -75,7 +74,7 @@
       <file leaf-file-name="script.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../bahek/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="263" column="41" selection-start="10591" selection-end="10591" vertical-scroll-proportion="0.0">
+            <state line="262" column="35" selection-start="10534" selection-end="10548" vertical-scroll-proportion="-8.88">
               <folding />
             </state>
           </provider>
@@ -147,6 +146,14 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../webChallenge" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -301,13 +308,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../bahek/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="263" column="41" selection-start="10591" selection-end="10591" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="52" column="7" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0">
@@ -317,14 +317,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../tormozz/js/gallery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="210" column="20" selection-start="6016" selection-end="6032" vertical-scroll-proportion="-9.04">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="95" selection-start="555" selection-end="555" vertical-scroll-proportion="-8.125">
+        <state line="210" column="20" selection-start="6016" selection-end="6032" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -336,9 +329,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="95" selection-start="555" selection-end="555" vertical-scroll-proportion="-8.125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bahek/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="262" column="35" selection-start="10534" selection-end="10548" vertical-scroll-proportion="-8.88">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="239" column="44" selection-start="6402" selection-end="6402" vertical-scroll-proportion="0.82954544">
+        <state line="243" column="35" selection-start="6540" selection-end="6540" vertical-scroll-proportion="0.65909094">
           <folding>
             <element signature="n#!!block;n#showFullImg#0" expanded="false" />
             <element signature="e#3331#3584#0" expanded="false" />
