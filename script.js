@@ -11,34 +11,36 @@ var fullImgWrap,
     fullImg,
     thumb,
     currentImgId,
-    winW, winH,
-    fullImgWrapW, fullImgWrapH,
-    fullImgW, fullImgH,
+    winH,
     thumbW, thumbH,
-    next, prev, nextShow, prevShow,
-    positionFullImg, load,
-    thumbShow, loadingShow;
+    next, prev,
+    positionFullImg, loadFullImg,
+    thumbShow, loadingShow,
+    thumbScroll,
+    resp, countImgHave;
+var lastImg = false;
 
 $(document).ready(function () {
     currentImgId = getCookie('currentImgId');
+    var currentImgSrc = getCookie('currentImgSrc');
     fullImgWrap = $('.b_gallery-b_showImg');
     thumb = $('.b_gallery-b_thumb');
-    load = $('.b_gallery-b_showImg-m_loading');
+    loadFullImg = $('.b_gallery-b_showImg-m_loading');
     loadingShow = 'show';
     next = $('.b_gallery-b_showImg-e_next');
     prev = $('.b_gallery-b_showImg-e_prev');
-    nextShow = 'show';
-    prevShow = 'show';
+    var nextShow = 'show';
+    var prevShow = 'show';
 
     $.when( downloadImg() )
         .done(function(){
             redrawArrows(currentImgId);
-            creatFullImg(currentImgId).load(function(){
+            creatFullImg(currentImgId, currentImgSrc).load(function(){
                 animateFullImg();
                 loading('hide', 'fullImg');
                 getInfo();
             });
-            creatThumbImg().load(function(){
+            creatThumbImg('0').load(function(){
                 $('img#'+currentImgId).addClass('m_active');
                 centeringThumbImg(currentImgId);
             });
@@ -46,7 +48,7 @@ $(document).ready(function () {
 
     $(document).hover(
         function () {
-            if(currentImgId < images.length - 1) {
+            if(lastImg == false) {
                 if(nextShow == 'hide'){
                     nextShow = 'show';
                     next.animate({opacity: '1.0'},500);
@@ -70,6 +72,9 @@ $(document).ready(function () {
             }
         }
     );
+    var scrl = document.getElementsByClassName('b_gallery-b_thumb');
+    if (scrl[0].addEventListener) scrl[0].addEventListener("DOMMouseScroll", mouse_wheel, false);
+    scrl[0].onmousewheel = mouse_wheel;
 });
 
 //general end
@@ -77,11 +82,12 @@ $(document).ready(function () {
 function downloadImg() {
     console.log('downloadImg');
     var url = downloadSetting.domen + "/api/users/"+downloadSetting.user+"/album/"+downloadSetting.albumId+"/photos/?"+downloadSetting.param;
+    var i=0;
     var req = $.getJSON(url)
         .success(function( response ){
-            for (var i in response.entries)
+            for (i in response.entries)
             {
-                if(i>15) {break;}
+                if(i>20) {break;}
                 var imgObj = {
                     thumb : response.entries[i].img.S.href,
                     fullImg : response.entries[i].img.L.href,
@@ -90,6 +96,8 @@ function downloadImg() {
                 };
                 images.push(imgObj);
             }
+            resp = response;
+            countImgHave = Number(i);
         })
         .error(function(){
             console.log('getJSON fail !');
@@ -97,12 +105,29 @@ function downloadImg() {
         });
     return req;
 }
+function reloadingImg(){
+    console.log('reloadingImg '+countImgHave);
+    for (var i = countImgHave; i < resp.entries.length; i++)
+    {
+        if(i>(countImgHave+20)) {break;}
+        var imgObj = {
+            thumb : resp.entries[i].img.S.href,
+            fullImg : resp.entries[i].img.L.href,
+            width : resp.entries[i].img.L.width,
+            height : resp.entries[i].img.L.height
+        };
+        images.push(imgObj);
+    }
+    creatThumbImg(countImgHave);
+    countImgHave = Number(i);
+    console.log(images.length);
+}
 
-function creatThumbImg() {
+function creatThumbImg(iStart) {
     thumb.css('bottom', '-'+(thumb.height()*1.5)+'px');
     thumbShow = 'hide';
     var thumbImg;
-    for(var i in images){
+    for(var i = iStart; i < images.length; i++){
         thumbImg=($('<img/>', {
             src: images[i].thumb,
             class: 'b_gallery-b_thumb-e_img',
@@ -115,17 +140,27 @@ function creatThumbImg() {
     return thumbImg;
 }
 
-function creatFullImg(index) {
+function creatFullImg(index, src) {
     index = index || 0;
-
+    src = src || images[index].fullImg;
     fullImg = $('<img/>', {
-        src: images[index].fullImg,
+        src: src,
         class: 'b_gallery-b_showImg-e_img',
         alt: 'photo '+index
     }).css({
             'position': 'absolute',
             'top': '50%'
         });
+
+    if(index > images.length){
+        positionFullImg = 'opacity';
+        fullImg.css({
+            'left': '50%',
+            'margin': '-'+(fullImg.height)/2+'px auto auto -'+(fullImg.width)/2+'px',
+            'opacity': '0'
+        });
+    }else{
+
     if(index < currentImgId){
         positionFullImg = 'left';
         fullImg.css({
@@ -146,9 +181,11 @@ function creatFullImg(index) {
             'opacity': '0'
         });
     }
+    }
 
     fullImgWrap.append(fullImg);
-    setCookie('currentImgId',index);
+    setCookie('currentImgSrc', fullImg.attr('src'));
+    setCookie('currentImgId', index);
     currentImgId = Number(index);
     return fullImg;
 }
@@ -181,7 +218,7 @@ function redrawArrows(index) {
     if(index == 0){
         prev.hide(500);
         next.show(500);
-    }else if(index == images.length - 1){
+    }else if(lastImg == true){
         next.hide(500);
         prev.show(500);
     }else{
@@ -212,7 +249,6 @@ $(window).mousemove(function(e) {
 // show/hide thumb end
 
 // thumb scroll begin
-
 var mouse_wheel = function (event) {
     if (false == !!event) event = window.event;
     var direction = ((event.wheelDelta) ? event.wheelDelta/120 : event.detail/-3) || false;
@@ -224,20 +260,18 @@ var mouse_wheel = function (event) {
             thumb.animate({ scrollLeft: '+=80'}, 80);
         }
     }
+    if(thumb.scrollLeft() !== 0 && thumbScroll == thumb.scrollLeft()){
+        console.log('next');
+        reloadingImg();
+    }
+    thumbScroll = thumb.scrollLeft();
 };
-
-function scroll() {
-    var scrl = document.getElementsByClassName('b_gallery-b_thumb');
-    if (scrl[0].addEventListener) scrl[0].addEventListener("DOMMouseScroll", mouse_wheel, false);
-    scrl[0].onmousewheel = mouse_wheel;
-}
-
 // thumb scroll end
 
 function getInfo() {
-    fullImgW = fullImg.width();
-    fullImgH = fullImg.height();
-    return resizeFullImg();
+    var fullImgW = fullImg.width();
+    var fullImgH = fullImg.height();
+    return resizeFullImg(fullImgW, fullImgH);
 }
 
 function alignFullImg(w, h) {
@@ -254,12 +288,11 @@ $(window).resize(function(){
     resizeFullImg();
 });
 
-function resizeFullImg() {
+function resizeFullImg(fullImgW, fullImgH) {
     if(!fullImg) {return false;}
-    winW = $(window).width();
     winH = $(window).height();
-    fullImgWrapW = fullImgWrap.width();
-    fullImgWrapH = fullImgWrap.height();
+    var fullImgWrapW = fullImgWrap.width();
+    var fullImgWrapH = fullImgWrap.height();
     thumbW = thumb.width();
     thumbH = thumb.height();
 
@@ -308,11 +341,11 @@ function setCookie(name, value, props) {
         if(propValue !== true){ updatedCookie += "=" + propValue }
     }
     document.cookie = updatedCookie;
-
 }
 // fullImg in coockie end
 
 function centeringThumbImg(index) {
+    if(index > images.length-1){return false;}
     var img = $('img#'+index);
     var centerThumb = (thumbW/2);
     var centerImg = (img.width()/2);
@@ -331,13 +364,13 @@ function loading(how, when){
             if(loadingShow == 'hide'){
                     loadingShow = 'show';
                     fullImg.remove();
-                    load.animate({opacity: '1.0'}, 500);
+                    loadFullImg.animate({opacity: '1.0'}, 500);
             }
         }
         if(how == 'hide'){
             if(loadingShow == 'show'){
                     loadingShow = 'hide';
-                    load.animate({opacity: '0'}, 300);
+                    loadFullImg.animate({opacity: '0'}, 300);
             }
         }
     }

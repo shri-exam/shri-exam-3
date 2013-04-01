@@ -2,18 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90fd5a67-0101-434b-888d-7267ea752bdf" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jquery_scroll_to.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script.js" afterPath="$PROJECT_DIR$/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="my.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364815313147" ignored="false" />
-    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364821808462" ignored="false" />
-    <file path="/style.css" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364815949734" ignored="false" />
+    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364830362240" ignored="false" />
+    <file path="/style.css" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364824795510" ignored="false" />
     <file path="/gallery.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364577742278" ignored="false" />
     <file path="/index.html" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364816381385" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,7 +35,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="58" selection-start="819" selection-end="819" vertical-scroll-proportion="-10.625">
+            <state line="16" column="34" selection-start="683" selection-end="683" vertical-scroll-proportion="-10.0">
               <folding />
             </state>
           </provider>
@@ -47,7 +44,7 @@
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="12" selection-start="1133" selection-end="1133" vertical-scroll-proportion="0.0">
+            <state line="5" column="21" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -56,22 +53,10 @@
       <file leaf-file-name="script.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="343" column="1" selection-start="9820" selection-end="9820" vertical-scroll-proportion="0.87215906">
+            <state line="188" column="33" selection-start="5721" selection-end="5721" vertical-scroll-proportion="0.22238587">
               <folding>
                 <element signature="n#!!block;n#creatThumbImg#0" expanded="false" />
-                <element signature="n#!!block;n#creatFullImg#0" expanded="false" />
-                <element signature="n#!!block;n#animateFullImg#0" expanded="false" />
-                <element signature="n#!!block;n#getInfo#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EcmaScript5.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="7" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -117,8 +102,8 @@
         <option value="$PROJECT_DIR$/../bahek/script.js" />
         <option value="$PROJECT_DIR$/../tormozz/js/jquery_scroll_to.js" />
         <option value="$PROJECT_DIR$/../tormozz/js/gallery.js" />
-        <option value="$PROJECT_DIR$/style.css" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/style.css" />
         <option value="$PROJECT_DIR$/script.js" />
       </list>
     </option>
@@ -267,9 +252,6 @@
         <state line="24" column="33" selection-start="668" selection-end="668" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="n#!!block;n#creatThumbImg#0" expanded="false" />
-            <element signature="n#!!block;n#creatFullImg#0" expanded="false" />
-            <element signature="n#!!block;n#animateFullImg#0" expanded="false" />
-            <element signature="n#!!block;n#getInfo#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -330,23 +312,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="12" selection-start="1133" selection-end="1133" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../sipayRT/js/gallery.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="116" column="17" selection-start="4348" selection-end="4348" vertical-scroll-proportion="2.5180898">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="58" selection-start="819" selection-end="819" vertical-scroll-proportion="-10.625">
           <folding />
         </state>
       </provider>
@@ -358,14 +326,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="21" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="34" selection-start="683" selection-end="683" vertical-scroll-proportion="-10.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="343" column="1" selection-start="9820" selection-end="9820" vertical-scroll-proportion="0.87215906">
+        <state line="188" column="33" selection-start="5721" selection-end="5721" vertical-scroll-proportion="0.22238587">
           <folding>
             <element signature="n#!!block;n#creatThumbImg#0" expanded="false" />
-            <element signature="n#!!block;n#creatFullImg#0" expanded="false" />
-            <element signature="n#!!block;n#animateFullImg#0" expanded="false" />
-            <element signature="n#!!block;n#getInfo#0" expanded="false" />
           </folding>
         </state>
       </provider>
