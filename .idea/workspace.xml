@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90fd5a67-0101-434b-888d-7267ea752bdf" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/loading.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script.js" afterPath="$PROJECT_DIR$/script.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="my.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364809794269" ignored="false" />
-    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364814108518" ignored="false" />
-    <file path="/style.css" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364812702711" ignored="false" />
+    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364814447425" ignored="false" />
+    <file path="/style.css" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364814777142" ignored="false" />
     <file path="/gallery.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364577742278" ignored="false" />
     <file path="/index.html" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364811502700" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,7 +43,7 @@
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="17" selection-start="1239" selection-end="1239" vertical-scroll-proportion="0.0">
+            <state line="22" column="16" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -55,7 +52,7 @@
       <file leaf-file-name="script.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="14" selection-start="674" selection-end="674" vertical-scroll-proportion="0.27698863">
+            <state line="30" column="20" selection-start="792" selection-end="792" vertical-scroll-proportion="0.2556818">
               <folding>
                 <element signature="n#!!block;n#creatThumbImg#0" expanded="false" />
                 <element signature="n#!!block;n#creatFullImg#0" expanded="false" />
@@ -175,7 +172,7 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32968536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14467184" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14467184" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15949188" sideWeight="0.6703146" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956952" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -343,14 +340,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="17" selection-start="1239" selection-end="1239" vertical-scroll-proportion="0.0">
+        <state line="22" column="16" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="14" selection-start="674" selection-end="674" vertical-scroll-proportion="0.27698863">
+        <state line="30" column="20" selection-start="792" selection-end="792" vertical-scroll-proportion="0.2556818">
           <folding>
             <element signature="n#!!block;n#creatThumbImg#0" expanded="false" />
             <element signature="n#!!block;n#creatFullImg#0" expanded="false" />

@@ -19,7 +19,8 @@ body, html {
 .b_gallery-b_showImg-e_next,
 .b_gallery-b_showImg-e_prev
 {
-    opacity: 0;
+    display: none;
+    opacity: 1.0;
     position: absolute;
     height: 20%;
     top: 50%;

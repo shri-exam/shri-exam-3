@@ -25,9 +25,14 @@ $(document).ready(function () {
     thumb = $('.b_gallery-b_thumb');
     load = $('.b_gallery-b_showImg-m_loading');
     loadingShow = 'show';
+    next = $('.b_gallery-b_showImg-e_next');
+    prev = $('.b_gallery-b_showImg-e_prev');
+    nextShow = 'show';
+    prevShow = 'show';
 
     $.when( downloadImg() )
         .done(function(){
+            redrawArrows(currentImgId);
             creatFullImg(currentImgId).load(function(){
                 animateFullImg();
                 loading('hide', 'fullImg');
@@ -38,12 +43,6 @@ $(document).ready(function () {
                 centeringThumbImg(currentImgId);
             });
         });
-
-    next = $('.b_gallery-b_showImg-e_next');
-    prev = $('.b_gallery-b_showImg-e_prev');
-
-    nextShow = 'hide';
-    prevShow = 'hide';
 
     $(document).hover(
         function () {
@@ -78,7 +77,6 @@ $(document).ready(function () {
 function downloadImg() {
     console.log('downloadImg');
     var url = downloadSetting.domen + "/api/users/"+downloadSetting.user+"/album/"+downloadSetting.albumId+"/photos/?"+downloadSetting.param;
-
     var req = $.getJSON(url)
         .success(function( response ){
             for (var i in response.entries)
@@ -187,6 +185,7 @@ function redrawArrows(index) {
         next.hide(500);
         prev.show(500);
     }else{
+        console.log(index+' < '+(images.length - 1));
         next.show(500);
         prev.show(500);
     }
