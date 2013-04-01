@@ -16,18 +16,21 @@ var fullImgWrap,
     fullImgW, fullImgH,
     thumbW, thumbH,
     next, prev, nextShow, prevShow,
-    positionFullImg,
-    thumbShow;
+    positionFullImg, load,
+    thumbShow, loadingShow;
 
 $(document).ready(function () {
     currentImgId = getCookie('currentImgId');
     fullImgWrap = $('.b_gallery-b_showImg');
     thumb = $('.b_gallery-b_thumb');
+    load = $('.b_gallery-b_showImg-m_loading');
+    loadingShow = 'show';
 
     $.when( downloadImg() )
         .done(function(){
             creatFullImg(currentImgId).load(function(){
                 animateFullImg();
+                loading('hide', 'fullImg');
                 getInfo();
             });
             creatThumbImg().load(function(){
@@ -117,8 +120,6 @@ function creatThumbImg() {
 function creatFullImg(index) {
     index = index || 0;
 
-    $('.b_gallery-b_showImg-e_img').remove();
-
     fullImg = $('<img/>', {
         src: images[index].fullImg,
         class: 'b_gallery-b_showImg-e_img',
@@ -165,22 +166,24 @@ function animateFullImg() {
 }
 
 function shift(how, index) {
+    loading('show', 'fullImg');
     index = (index == undefined || index == null)? currentImgId+how:index;
     $('img#'+currentImgId).removeClass('m_active');
     $('img#'+index).addClass('m_active');
     creatFullImg(index).load(function(){
         animateFullImg();
+        loading('hide', 'fullImg');
         getInfo();
     });
-    redrawArrows();
+    redrawArrows(index);
     centeringThumbImg(index);
 }
 
-function redrawArrows() {
-    if(currentImgId == 0){
+function redrawArrows(index) {
+    if(index == 0){
         prev.hide(500);
         next.show(500);
-    }else if(currentImgId == images.length - 1){
+    }else if(index == images.length - 1){
         next.hide(500);
         prev.show(500);
     }else{
@@ -318,5 +321,24 @@ function centeringThumbImg(index) {
     }else{
         var scroll = (offset-centerThumb)+centerImg;
         thumb.scrollTo('+='+scroll, 500);
+    }
+}
+function loading(how, when){
+    if(how == 'show'){
+        if(loadingShow == 'hide'){
+            if(when == 'fullImg'){
+                loadingShow = 'show';
+                fullImg.remove();
+                load.animate({opacity: '1.0'}, 500);
+            }
+        }
+    }
+    if(how == 'hide'){
+        if(loadingShow == 'show'){
+            if(when == 'fullImg'){
+                loadingShow = 'hide';
+                load.animate({opacity: '0'}, 300);
+            }
+        }
     }
 }

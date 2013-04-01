@@ -60,3 +60,13 @@ body, html {
     cursor: pointer;
     box-shadow: 0 0 15px rgba(89, 125, 255, 0.9);
 }
+.b_gallery-b_showImg-m_loading
+{
+    width: 50px;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 50%;
+    margin: -25px -25px auto auto;
+    opacity: 1.0;
+}
