@@ -1,43 +1,51 @@
 //general begin
 
 var downloadSetting = {
-    domen: 'http://api-fotki.yandex.ru',
-    user: 'aig1001',
-    albumId: '63684',
-    param: '&format=json&callback=?'
+    collection: 'http://api-fotki.yandex.ru/api/users/aig1001/album/63684/photos/',
+    order: 'updated',
+    offsetPage: '',
+    limitImg: 20,
+    format: 'format=json',
+    callback: 'callback=?'
 };
 var images = [];
-var fullImgWrap,
-    fullImg,
-    thumb,
-    currentImgId,
-    winH,
-    thumbW, thumbH,
-    next, prev,
-    positionFullImg, loadFullImg,
-    thumbShow, loadingShow,
-    thumbScroll,
-    resp, countImgHave;
-var lastImg = false;
+var countImgHave = -20;
+var lastImg = Infinity;
+
+var fullImgWrap,fullImg, positionFullImg, loadFullImg, fullImgW, fullImgH, currentImgId,
+    thumb, thumbW, thumbH, thumbShow, thumbScroll,
+    winH, next, prev, loadingShow;
+
+var loadingThumb = $('<img/>', {
+    src: 'img/loadThumb.gif',
+    class: 'b_gallery-b_thumb-m_reloading',
+    alt: 'loading...'
+}).css({
+        'height': '100%',
+        'max-height': '100px',
+        'marginRight': '10px'
+    });
 
 $(document).ready(function () {
     currentImgId = getCookie('currentImgId');
     var currentImgSrc = getCookie('currentImgSrc');
     fullImgWrap = $('.b_gallery-b_showImg');
     thumb = $('.b_gallery-b_thumb');
+    thumb.css('bottom', '-'+(thumb.height()*1.5)+'px');
+    thumbShow = 'hide';
     loadFullImg = $('.b_gallery-b_showImg-m_loading');
     loadingShow = 'show';
     next = $('.b_gallery-b_showImg-e_next');
     prev = $('.b_gallery-b_showImg-e_prev');
     var nextShow = 'show';
     var prevShow = 'show';
-
-    $.when( downloadImg() )
+    var url = downloadSetting.collection+downloadSetting.order+'/?limit='+downloadSetting.limitImg+'&'+downloadSetting.format+'&'+downloadSetting.callback;
+    $.when( downloadImg(url) )
         .done(function(){
             redrawArrows(currentImgId);
             creatFullImg(currentImgId, currentImgSrc).load(function(){
                 animateFullImg();
-                loading('hide', 'fullImg');
+                loading('hide');
                 getInfo();
             });
             creatThumbImg('0').load(function(){
@@ -48,7 +56,7 @@ $(document).ready(function () {
 
     $(document).hover(
         function () {
-            if(lastImg == false) {
+            if(currentImgId < lastImg) {
                 if(nextShow == 'hide'){
                     nextShow = 'show';
                     next.animate({opacity: '1.0'},500);
@@ -79,55 +87,57 @@ $(document).ready(function () {
 
 //general end
 
-function downloadImg() {
+function downloadImg(url) {
     console.log('downloadImg');
-    var url = downloadSetting.domen + "/api/users/"+downloadSetting.user+"/album/"+downloadSetting.albumId+"/photos/?"+downloadSetting.param;
     var i=0;
     var req = $.getJSON(url)
         .success(function( response ){
             for (i in response.entries)
             {
-                if(i>20) {break;}
                 var imgObj = {
                     thumb : response.entries[i].img.S.href,
-                    fullImg : response.entries[i].img.L.href,
-                    width : response.entries[i].img.L.width,
-                    height : response.entries[i].img.L.height
+                    fullImg : response.entries[i].img.XL.href,
+                    width : response.entries[i].img.XL.width,
+                    height : response.entries[i].img.XL.height,
+                    updated : response.entries[i].updated
                 };
                 images.push(imgObj);
             }
-            resp = response;
-            countImgHave = Number(i);
+            if(i < 19){
+                lastImg = images.length-2;
+                console.log(lastImg);
+            }
+            downloadSetting.offsetPage = images[images.length-1].updated;
+            countImgHave += Number(downloadSetting.limitImg);
         })
         .error(function(){
             console.log('getJSON fail !');
             alert('Проблемы с сервером фото!');
         });
+
     return req;
 }
 function reloadingImg(){
-    console.log('reloadingImg '+countImgHave);
-    for (var i = countImgHave; i < resp.entries.length; i++)
-    {
-        if(i>(countImgHave+20)) {break;}
-        var imgObj = {
-            thumb : resp.entries[i].img.S.href,
-            fullImg : resp.entries[i].img.L.href,
-            width : resp.entries[i].img.L.width,
-            height : resp.entries[i].img.L.height
-        };
-        images.push(imgObj);
-    }
-    creatThumbImg(countImgHave);
-    countImgHave = Number(i);
-    console.log(images.length);
+    var dfd = $.Deferred();
+    thumb.append(loadingThumb);
+    var url = downloadSetting.collection+downloadSetting.order+';'+downloadSetting.offsetPage+'/?limit='+downloadSetting.limitImg+'&'+downloadSetting.format+'&'+downloadSetting.callback;
+    $.when( downloadImg(url) )
+        .done(function(){
+            creatThumbImg(countImgHave).load(function(){
+                loadingThumb.remove();
+                dfd.resolve();
+            });
+        });
+    return dfd.promise();
 }
 
 function creatThumbImg(iStart) {
-    thumb.css('bottom', '-'+(thumb.height()*1.5)+'px');
-    thumbShow = 'hide';
+    iStart = (iStart == 0) ? 0 : (iStart+1);
+    iEnd = images.length;
+    if(lastImg !== Infinity){ iEnd=lastImg+1; }
+
     var thumbImg;
-    for(var i = iStart; i < images.length; i++){
+    for(var i = iStart; i < iEnd; i++){
         thumbImg=($('<img/>', {
             src: images[i].thumb,
             class: 'b_gallery-b_thumb-e_img',
@@ -201,24 +211,39 @@ function animateFullImg() {
 }
 
 function shift(how, index) {
-    loading('show', 'fullImg');
+    loading('show');
     index = (index == undefined || index == null)? currentImgId+how:index;
+    if(index >= images.length){
+        index += 1;
+        reloadingImg().done(function(){
+            $('img#'+currentImgId).removeClass('m_active');
+            $('img#'+index).addClass('m_active');
+            creatFullImg(index).load(function(){
+                animateFullImg();
+                loading('hide');
+                getInfo();
+            });
+            redrawArrows(index);
+            centeringThumbImg(index);
+        })
+    }else{
     $('img#'+currentImgId).removeClass('m_active');
     $('img#'+index).addClass('m_active');
     creatFullImg(index).load(function(){
         animateFullImg();
-        loading('hide', 'fullImg');
+        loading('hide');
         getInfo();
     });
     redrawArrows(index);
     centeringThumbImg(index);
+    }
 }
 
 function redrawArrows(index) {
     if(index == 0){
         prev.hide(500);
         next.show(500);
-    }else if(lastImg == true){
+    }else if(index == lastImg){
         next.hide(500);
         prev.show(500);
     }else{
@@ -255,22 +280,27 @@ var mouse_wheel = function (event) {
 
     if (direction) {
         if(direction < 0){
-            thumb.animate({ scrollLeft: '-=80'}, 80);
+            thumb.animate({ scrollLeft: '-=80'}, 80, function(){ scrollEnd(); });
         }else if(direction > 0){
-            thumb.animate({ scrollLeft: '+=80'}, 80);
+            thumb.animate({ scrollLeft: '+=80'}, 80, function(){ scrollEnd(); });
         }
     }
-    if(thumb.scrollLeft() !== 0 && thumbScroll == thumb.scrollLeft()){
-        console.log('next');
-        reloadingImg();
+};
+var reloading = false;
+function scrollEnd() {
+    if(thumb.scrollLeft() !== 0 && thumbScroll === thumb.scrollLeft()){
+        if(reloading == false && lastImg === Infinity){
+            reloading = true;
+            reloadingImg().done(function(){reloading = false});
+        }
     }
     thumbScroll = thumb.scrollLeft();
-};
+}
 // thumb scroll end
 
 function getInfo() {
-    var fullImgW = fullImg.width();
-    var fullImgH = fullImg.height();
+    fullImgW = fullImg.width();
+    fullImgH = fullImg.height();
     return resizeFullImg(fullImgW, fullImgH);
 }
 
@@ -288,7 +318,7 @@ $(window).resize(function(){
     resizeFullImg();
 });
 
-function resizeFullImg(fullImgW, fullImgH) {
+function resizeFullImg() {
     if(!fullImg) {return false;}
     winH = $(window).height();
     var fullImgWrapW = fullImgWrap.width();
@@ -358,8 +388,7 @@ function centeringThumbImg(index) {
         thumb.animate({ scrollLeft: '+='+scroll}, 500);
     }
 }
-function loading(how, when){
-    if(when == 'fullImg'){
+function loading(how){
         if(how == 'show'){
             if(loadingShow == 'hide'){
                     loadingShow = 'show';
@@ -373,5 +402,4 @@ function loading(how, when){
                     loadFullImg.animate({opacity: '0'}, 300);
             }
         }
-    }
 }

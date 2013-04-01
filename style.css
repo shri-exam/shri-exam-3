@@ -23,7 +23,7 @@ body, html {
     opacity: 1.0;
     position: absolute;
     height: 20%;
-    top: 50%;
+    top: 35%;
     z-index: 1;
 }
 .b_gallery-b_showImg-e_next:hover,
@@ -43,6 +43,7 @@ body, html {
     padding-right: 0;
     white-space: nowrap;
     overflow: hidden;
+    vertical-align: middle;
 }
 
 .b_gallery-b_thumb-e_img
@@ -69,13 +70,5 @@ body, html {
     top: 50%;
     right: 50%;
     margin: -25px -25px auto auto;
-    opacity: 1.0;
-}
-.b_gallery-b_thumb-m_loadFerst
-{
-    position: absolute;
-    top: 50%;
-    right: 50%;
-    z-index: 1;
     opacity: 1.0;
 }
