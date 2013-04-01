@@ -71,3 +71,11 @@ body, html {
     margin: -25px -25px auto auto;
     opacity: 1.0;
 }
+.b_gallery-b_thumb-m_loadFerst
+{
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    z-index: 1;
+    opacity: 1.0;
+}

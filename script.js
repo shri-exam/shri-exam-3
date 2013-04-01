@@ -81,7 +81,7 @@ function downloadImg() {
         .success(function( response ){
             for (var i in response.entries)
             {
-                if(i>20) {break;}
+                if(i>15) {break;}
                 var imgObj = {
                     thumb : response.entries[i].img.S.href,
                     fullImg : response.entries[i].img.L.href,
@@ -185,7 +185,6 @@ function redrawArrows(index) {
         next.hide(500);
         prev.show(500);
     }else{
-        console.log(index+' < '+(images.length - 1));
         next.show(500);
         prev.show(500);
     }
@@ -219,7 +218,11 @@ var mouse_wheel = function (event) {
     var direction = ((event.wheelDelta) ? event.wheelDelta/120 : event.detail/-3) || false;
 
     if (direction) {
-        thumb.scrollTo((direction < 0)?'-=80px':'+=80px', 30);
+        if(direction < 0){
+            thumb.animate({ scrollLeft: '-=80'}, 80);
+        }else if(direction > 0){
+            thumb.animate({ scrollLeft: '+=80'}, 80);
+        }
     }
 };
 
@@ -316,27 +319,25 @@ function centeringThumbImg(index) {
     var offset = img.offset().left;
     if(offset < centerThumb) {
         var scroll = centerThumb-offset-centerImg;
-        thumb.scrollTo('-='+scroll, 500);
+        thumb.animate({ scrollLeft: '-='+scroll}, 500);
     }else{
         var scroll = (offset-centerThumb)+centerImg;
-        thumb.scrollTo('+='+scroll, 500);
+        thumb.animate({ scrollLeft: '+='+scroll}, 500);
     }
 }
 function loading(how, when){
-    if(how == 'show'){
-        if(loadingShow == 'hide'){
-            if(when == 'fullImg'){
-                loadingShow = 'show';
-                fullImg.remove();
-                load.animate({opacity: '1.0'}, 500);
+    if(when == 'fullImg'){
+        if(how == 'show'){
+            if(loadingShow == 'hide'){
+                    loadingShow = 'show';
+                    fullImg.remove();
+                    load.animate({opacity: '1.0'}, 500);
             }
         }
-    }
-    if(how == 'hide'){
-        if(loadingShow == 'show'){
-            if(when == 'fullImg'){
-                loadingShow = 'hide';
-                load.animate({opacity: '0'}, 300);
+        if(how == 'hide'){
+            if(loadingShow == 'show'){
+                    loadingShow = 'hide';
+                    load.animate({opacity: '0'}, 300);
             }
         }
     }
