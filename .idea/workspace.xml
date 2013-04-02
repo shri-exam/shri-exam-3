@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="90fd5a67-0101-434b-888d-7267ea752bdf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script.js" afterPath="$PROJECT_DIR$/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
     </list>
     <ignored path="my.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,12 +51,10 @@
       <file leaf-file-name="script.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="41" selection-start="3601" selection-end="3601" vertical-scroll-proportion="0.41826215">
+            <state line="263" column="35" selection-start="7982" selection-end="7982" vertical-scroll-proportion="0.5735736">
               <folding>
-                <element signature="n#!!block;n#reloadingImg#0" expanded="false" />
                 <element signature="n#!!block;n#creatFullImg#0" expanded="false" />
                 <element signature="n#!!block;n#animateFullImg#0" expanded="false" />
-                <element signature="n#!!block;n#redrawArrows#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -244,10 +241,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="33" selection-start="668" selection-end="668" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="n#!!block;n#reloadingImg#0" expanded="false" />
             <element signature="n#!!block;n#creatFullImg#0" expanded="false" />
             <element signature="n#!!block;n#animateFullImg#0" expanded="false" />
-            <element signature="n#!!block;n#redrawArrows#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -332,12 +327,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="41" selection-start="3601" selection-end="3601" vertical-scroll-proportion="0.41826215">
+        <state line="263" column="35" selection-start="7982" selection-end="7982" vertical-scroll-proportion="0.5735736">
           <folding>
-            <element signature="n#!!block;n#reloadingImg#0" expanded="false" />
             <element signature="n#!!block;n#creatFullImg#0" expanded="false" />
             <element signature="n#!!block;n#animateFullImg#0" expanded="false" />
-            <element signature="n#!!block;n#redrawArrows#0" expanded="false" />
           </folding>
         </state>
       </provider>

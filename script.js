@@ -133,9 +133,7 @@ function reloadingImg(){
 }
 
 function creatThumbImg() {
-    console.log('lenght: '+images.length);
     var iEnd = (lastImg === Infinity)? images.length : lastImg;
-    console.log('iEnd: '+iEnd);
     var thumbImg;
     for(var i = indexImg; i < iEnd; i++){
         thumbImg=($('<img/>', {
@@ -263,7 +261,7 @@ function redrawArrows(index, visible) {
             prev.hide(500);
             next.animate({opacity: '1.0'},500);
             next.show(500);
-        }else if(index == lastImg){
+        }else if(index == lastImg-1){
             nextVisible = false;
             prevVisible = true;
             next.hide(500);
