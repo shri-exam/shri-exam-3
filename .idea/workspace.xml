@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90fd5a67-0101-434b-888d-7267ea752bdf" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/350.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/359.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/load.gif" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script.js" afterPath="$PROJECT_DIR$/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="my.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364893827472" ignored="false" />
-    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364913518504" ignored="false" />
+    <file path="/script.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364930046923" ignored="false" />
     <file path="/style.css" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364912677570" ignored="false" />
     <file path="/gallery.js" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364841158197" ignored="false" />
     <file path="/index.html" changelist="90fd5a67-0101-434b-888d-7267ea752bdf" time="1364816381385" ignored="false" />
@@ -36,10 +31,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="55" selection-start="345" selection-end="345" vertical-scroll-proportion="-5.0">
+            <state line="22" column="7" selection-start="799" selection-end="799" vertical-scroll-proportion="0.4852941">
               <folding />
             </state>
           </provider>
@@ -54,19 +49,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="script.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="script.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="29" selection-start="727" selection-end="727" vertical-scroll-proportion="0.52098405">
+            <state line="401" column="33" selection-start="12016" selection-end="12016" vertical-scroll-proportion="-14.88">
               <folding>
                 <element signature="n#!!block;n#downloadImg#0" expanded="false" />
                 <element signature="n#!!block;n#reloadingImg#0" expanded="false" />
                 <element signature="n#!!block;n#creatThumbImg#0" expanded="false" />
-                <element signature="n#!!block;n#creatFullImg#0" expanded="false" />
-                <element signature="n#!!block;n#fullImgLoad#0" expanded="false" />
                 <element signature="n#!!block;n#animateFullImg#0" expanded="false" />
-                <element signature="n#!!block;n#shift#0" expanded="false" />
-                <element signature="e#7593#8034#0" expanded="false" />
+                <element signature="n#!!block;n#redrawArrows#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -104,8 +96,8 @@
         <option value="$PROJECT_DIR$/../bahek/script.js" />
         <option value="$PROJECT_DIR$/../tormozz/js/jquery_scroll_to.js" />
         <option value="$PROJECT_DIR$/../tormozz/js/gallery.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/style.css" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/script.js" />
       </list>
     </option>
@@ -167,7 +159,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3" y="0" width="1446" height="877" extended-state="6" />
+    <frame x="-3" y="0" width="1446" height="877" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32968536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -256,11 +248,8 @@
             <element signature="n#!!block;n#downloadImg#0" expanded="false" />
             <element signature="n#!!block;n#reloadingImg#0" expanded="false" />
             <element signature="n#!!block;n#creatThumbImg#0" expanded="false" />
-            <element signature="n#!!block;n#creatFullImg#0" expanded="false" />
-            <element signature="n#!!block;n#fullImgLoad#0" expanded="false" />
             <element signature="n#!!block;n#animateFullImg#0" expanded="false" />
-            <element signature="n#!!block;n#shift#0" expanded="false" />
-            <element signature="e#7593#8034#0" expanded="false" />
+            <element signature="n#!!block;n#redrawArrows#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -329,10 +318,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="55" selection-start="345" selection-end="345" vertical-scroll-proportion="-5.0">
-          <folding />
+        <state line="401" column="33" selection-start="12016" selection-end="12016" vertical-scroll-proportion="-14.88">
+          <folding>
+            <element signature="n#!!block;n#downloadImg#0" expanded="false" />
+            <element signature="n#!!block;n#reloadingImg#0" expanded="false" />
+            <element signature="n#!!block;n#creatThumbImg#0" expanded="false" />
+            <element signature="n#!!block;n#animateFullImg#0" expanded="false" />
+            <element signature="n#!!block;n#redrawArrows#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -343,19 +338,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="29" selection-start="727" selection-end="727" vertical-scroll-proportion="0.52098405">
-          <folding>
-            <element signature="n#!!block;n#downloadImg#0" expanded="false" />
-            <element signature="n#!!block;n#reloadingImg#0" expanded="false" />
-            <element signature="n#!!block;n#creatThumbImg#0" expanded="false" />
-            <element signature="n#!!block;n#creatFullImg#0" expanded="false" />
-            <element signature="n#!!block;n#fullImgLoad#0" expanded="false" />
-            <element signature="n#!!block;n#animateFullImg#0" expanded="false" />
-            <element signature="n#!!block;n#shift#0" expanded="false" />
-            <element signature="e#7593#8034#0" expanded="false" />
-          </folding>
+        <state line="22" column="7" selection-start="799" selection-end="799" vertical-scroll-proportion="0.4852941">
+          <folding />
         </state>
       </provider>
     </entry>

@@ -11,14 +11,14 @@ var downloadSetting = {
 var images = [];
 var lastImg = Infinity;
 var indexImg = 0;
-var fullImgWrap,fullImg, positionFullImg, loadFullImg, fullImgW, fullImgH, currentImgId,
-    thumb, thumbW, thumbH, thumbShow, thumbScroll,
+var fullImgWrap,fullImg, positionFullImg, loadFullImg, currentImgId,
+    thumb, thumbW, thumbH, thumbShow, thumbScroll, fullImgW, fullImgH,
     winH, next, prev, nextVisible, prevVisible, loadingShow;
 
 var loadingThumb = $('<img/>', {
-    src: 'img/loadThumb.gif',
-    class: 'b_gallery-b_thumb-m_reloading',
-    alt: 'loading...'
+    'src': 'img/loadThumb.gif',
+    'class': 'b_gallery-b_thumb-m_reloading',
+    'alt': 'loading...'
 }).css({
         'height': '100%',
         'max-height': '100px',
@@ -39,12 +39,17 @@ $(document).ready(function () {
     nextVisible = false;
     prevVisible = false;
 
+    next.on('click', function(){shift(1)});
+    prev.on('click', function(){shift(-1)});
+
     var url = downloadSetting.collection+downloadSetting.order+'/?limit='+downloadSetting.limitImg+'&'+downloadSetting.format+'&'+downloadSetting.callback;
 
     $.when( downloadImg(url) )
         .done(function(){
             redrawArrows(currentImgId, false);
-            creatFullImg(currentImgId, currentImgSrc);
+
+            creatFullImg(currentImgId, currentImgSrc).on('load', function() {fullImgLoad()});
+
             creatThumbImg(0).load(function(){
                 $('img#'+currentImgId).addClass('m_active');
                 centeringThumbImg(currentImgId);
@@ -59,15 +64,34 @@ $(document).ready(function () {
             redrawArrows(currentImgId, false);
         }
     );
-    var scrl = document.getElementsByClassName('b_gallery-b_thumb');
-    if (scrl[0].addEventListener) scrl[0].addEventListener("DOMMouseScroll", mouse_wheel, false);
-    scrl[0].onmousewheel = mouse_wheel;
+
+    if(document.getElementsByClassName == undefined) {                      // Для IE
+        var scrl = document.getElementsByClassName = function(cl) {
+            var retnode = [];
+            var myclass = new RegExp('\\b'+cl+'\\b');
+            var elem = this.getElementsByTagName('*');
+            for (var i = 0; i < elem.length; i++) {
+                var classes = elem[i].className;
+                if (myclass.test(classes)) {
+                    retnode.push(elem[i]);
+                }
+            }
+            return retnode;
+        }
+    }else{
+        var scrl = document.getElementsByClassName('b_gallery-b_thumb');
+    }
+
+    if(window.addEventListener) {
+        scrl[0].addEventListener("DOMMouseScroll", mouse_wheel, false);
+    }
+    window.onmousewheel = document.onmousewheel = mouse_wheel;
+
 });
 
 //general end
 
 function downloadImg(url, iStart) {
-    console.log('downloadImg');
     iStart = iStart || 0;
     var req = $.getJSON(url)
         .success(function( response ){
@@ -91,7 +115,6 @@ function downloadImg(url, iStart) {
             console.log('getJSON fail !');
             alert('Проблемы с сервером фото!');
         });
-
     return req;
 }
 function reloadingImg(){
@@ -113,11 +136,11 @@ function creatThumbImg(iStart) {
     var thumbImg;
     for(var i = indexImg; i < images.length; i++){
         thumbImg=($('<img/>', {
-            src: images[i].thumb,
-            class: 'b_gallery-b_thumb-e_img',
-            id: i,
-            alt: 'photo '+i,
-            onclick: 'shift(null, '+i+')'
+            'src': images[i].thumb,
+            'class': 'b_gallery-b_thumb-e_img',
+            'id': i,
+            'alt': 'photo '+i,
+            'onclick': 'shift(null, '+i+')'
         }));
         thumb.append(thumbImg);
         indexImg = i+1;
@@ -129,33 +152,35 @@ function creatFullImg(index, src) {
     index = index || 0;
     src = src || images[index].fullImg;
     fullImg = $('<img/>', {
-        src: src,
-        class: 'b_gallery-b_showImg-e_img',
-        alt: 'photo '+index,
-        onload: 'fullImgLoad()'
-
+        'src': src,
+        'class': 'b_gallery-b_showImg-e_img',
+        'alt': 'photo '+index
     }).css({
             'position': 'absolute',
             'top': '50%'
         });
 
+if(index < images.length){
+    fullImgW = images[index].width;
+    fullImgH = images[index].height;
+}
+
     if(index < currentImgId){
         positionFullImg = 'left';
         fullImg.css({
-            'left': '-'+images[index].width+'px',
-            'margin': '-'+(images[index].height)/2+'px auto auto -'+(images[index].width)/2+'px'
+            'left': '-'+fullImgW+'px',
+            'margin': '-'+(fullImgH)/2+'px auto auto -'+(fullImgW)/2+'px'
         });
     }else if(index > currentImgId){
         positionFullImg = 'right';
         fullImg.css({
-            'right': '-'+images[index].width+'px',
-            'margin': '-'+(images[index].height)/2+'px -'+(images[index].width)/2+'px auto auto'
+            'right': '-'+fullImgW+'px',
+            'margin': '-'+(fullImgH)/2+'px -'+(fullImgW)/2+'px auto auto'
         });
     }else{
         positionFullImg = 'opacity';
         fullImg.css({
             'left': '50%',
-            'margin': '-'+(fullImg.height)/2+'px auto auto -'+(fullImg.width)/2+'px',
             'opacity': '0'
         });
     }
@@ -164,12 +189,16 @@ function creatFullImg(index, src) {
     setCookie('currentImgId', index);
     setCookie('currentImgSrc', src);
     currentImgId = Number(index);
+    return fullImg;
 }
 
 function fullImgLoad() {
+    fullImgW = fullImg.width();
+    fullImgH = fullImg.height();
+
     animateFullImg();
     loading('hide');
-    getInfo();
+    resizeFullImg();
 }
 
 function animateFullImg() {
@@ -189,14 +218,14 @@ function shift(how, index) {
         reloadingImg().done(function(){
             $('img#'+currentImgId).removeClass('m_active');
             $('img#'+index).addClass('m_active');
-            creatFullImg(index);
+            creatFullImg(index).on('load', function() {fullImgLoad()});
             redrawArrows(index);
             centeringThumbImg(index);
         })
     }else{
     $('img#'+currentImgId).removeClass('m_active');
     $('img#'+index).addClass('m_active');
-    creatFullImg(index);
+    creatFullImg(index).on('load', function() {fullImgLoad()});
     redrawArrows(index);
     centeringThumbImg(index);
     }
@@ -250,7 +279,7 @@ function redrawArrows(index, visible) {
 }
 
 // show/hide thumb begin
-$(window).mousemove(function(e) {
+$(document).mousemove(function(e) {
     if(!thumb) {return false;}
     winH = $(window).height();
     thumbH = $('.b_gallery-b_thumb').height();
@@ -295,12 +324,6 @@ function scrollEnd() {
 }
 // thumb scroll end
 
-function getInfo() {
-    fullImgW = fullImg.width();
-    fullImgH = fullImg.height();
-    return resizeFullImg(fullImgW, fullImgH);
-}
-
 function alignFullImg(w, h) {
     if(positionFullImg === 'right'){
         fullImg.css('margin','-'+(h/2)+'px -'+(w/2)+'px auto auto');
@@ -317,12 +340,10 @@ $(window).resize(function(){
 
 function resizeFullImg() {
     if(!fullImg) {return false;}
-    winH = $(window).height();
     var fullImgWrapW = fullImgWrap.width();
     var fullImgWrapH = fullImgWrap.height();
     thumbW = thumb.width();
     thumbH = thumb.height();
-
     if(fullImgWrapW < fullImgW || fullImgWrapH < fullImgH) {
         if((fullImgW/fullImgH) < (fullImgWrapW/fullImgWrapH)) {
             fullImg.width(fullImgWrapH * (fullImgW/fullImgH));
