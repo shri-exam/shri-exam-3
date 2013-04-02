@@ -107,7 +107,7 @@ function downloadImg(url, iStart) {
                 images.push(imgObj);
             }
             if(i < 19){
-                lastImg = images.length-2;
+                lastImg = images.length-1;
             }
             downloadSetting.offsetPage = ';'+images[images.length-1].updated;
         })
@@ -132,9 +132,12 @@ function reloadingImg(){
     return dfd.promise();
 }
 
-function creatThumbImg(iStart) {
+function creatThumbImg() {
+    console.log('lenght: '+images.length);
+    var iEnd = (lastImg === Infinity)? images.length : lastImg;
+    console.log('iEnd: '+iEnd);
     var thumbImg;
-    for(var i = indexImg; i < images.length; i++){
+    for(var i = indexImg; i < iEnd; i++){
         thumbImg=($('<img/>', {
             'src': images[i].thumb,
             'class': 'b_gallery-b_thumb-e_img',
