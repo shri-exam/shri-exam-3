@@ -9,12 +9,11 @@ var downloadSetting = {
     callback: 'callback=?'
 };
 var images = [];
-var countImgHave = -20;
 var lastImg = Infinity;
-
+var indexImg = 0;
 var fullImgWrap,fullImg, positionFullImg, loadFullImg, fullImgW, fullImgH, currentImgId,
     thumb, thumbW, thumbH, thumbShow, thumbScroll,
-    winH, next, prev, loadingShow;
+    winH, next, prev, nextVisible, prevVisible, loadingShow;
 
 var loadingThumb = $('<img/>', {
     src: 'img/loadThumb.gif',
@@ -37,18 +36,16 @@ $(document).ready(function () {
     loadingShow = 'show';
     next = $('.b_gallery-b_showImg-e_next');
     prev = $('.b_gallery-b_showImg-e_prev');
-    var nextShow = 'show';
-    var prevShow = 'show';
+    nextVisible = false;
+    prevVisible = false;
+
     var url = downloadSetting.collection+downloadSetting.order+'/?limit='+downloadSetting.limitImg+'&'+downloadSetting.format+'&'+downloadSetting.callback;
+
     $.when( downloadImg(url) )
         .done(function(){
-            redrawArrows(currentImgId);
-            creatFullImg(currentImgId, currentImgSrc).load(function(){
-                animateFullImg();
-                loading('hide');
-                getInfo();
-            });
-            creatThumbImg('0').load(function(){
+            redrawArrows(currentImgId, false);
+            creatFullImg(currentImgId, currentImgSrc);
+            creatThumbImg(0).load(function(){
                 $('img#'+currentImgId).addClass('m_active');
                 centeringThumbImg(currentImgId);
             });
@@ -56,28 +53,10 @@ $(document).ready(function () {
 
     $(document).hover(
         function () {
-            if(currentImgId < lastImg) {
-                if(nextShow == 'hide'){
-                    nextShow = 'show';
-                    next.animate({opacity: '1.0'},500);
-                }
-            }
-            if(currentImgId > 0) {
-                if(prevShow == 'hide'){
-                    prevShow = 'show';
-                    prev.animate({opacity: '1.0'},500);
-                }
-            }
+            redrawArrows(currentImgId, true);
         },
         function () {
-            if(nextShow == 'show'){
-                nextShow = 'hide';
-                next.animate({opacity: '0'},500);
-            }
-            if(prevShow == 'show'){
-                prevShow = 'hide';
-                prev.animate({opacity: '0'},500);
-            }
+            redrawArrows(currentImgId, false);
         }
     );
     var scrl = document.getElementsByClassName('b_gallery-b_thumb');
@@ -87,12 +66,12 @@ $(document).ready(function () {
 
 //general end
 
-function downloadImg(url) {
+function downloadImg(url, iStart) {
     console.log('downloadImg');
-    var i=0;
+    iStart = iStart || 0;
     var req = $.getJSON(url)
         .success(function( response ){
-            for (i in response.entries)
+            for (var i = iStart; i < response.entries.length; i++)
             {
                 var imgObj = {
                     thumb : response.entries[i].img.S.href,
@@ -105,10 +84,8 @@ function downloadImg(url) {
             }
             if(i < 19){
                 lastImg = images.length-2;
-                console.log(lastImg);
             }
-            downloadSetting.offsetPage = images[images.length-1].updated;
-            countImgHave += Number(downloadSetting.limitImg);
+            downloadSetting.offsetPage = ';'+images[images.length-1].updated;
         })
         .error(function(){
             console.log('getJSON fail !');
@@ -120,10 +97,11 @@ function downloadImg(url) {
 function reloadingImg(){
     var dfd = $.Deferred();
     thumb.append(loadingThumb);
-    var url = downloadSetting.collection+downloadSetting.order+';'+downloadSetting.offsetPage+'/?limit='+downloadSetting.limitImg+'&'+downloadSetting.format+'&'+downloadSetting.callback;
-    $.when( downloadImg(url) )
+    var url = downloadSetting.collection+downloadSetting.order+downloadSetting.offsetPage+'/?limit='+downloadSetting.limitImg+'&'+downloadSetting.format+'&'+downloadSetting.callback;
+
+    $.when( downloadImg(url, 1) )
         .done(function(){
-            creatThumbImg(countImgHave).load(function(){
+            creatThumbImg().load(function(){
                 loadingThumb.remove();
                 dfd.resolve();
             });
@@ -132,12 +110,8 @@ function reloadingImg(){
 }
 
 function creatThumbImg(iStart) {
-    iStart = (iStart == 0) ? 0 : (iStart+1);
-    iEnd = images.length;
-    if(lastImg !== Infinity){ iEnd=lastImg+1; }
-
     var thumbImg;
-    for(var i = iStart; i < iEnd; i++){
+    for(var i = indexImg; i < images.length; i++){
         thumbImg=($('<img/>', {
             src: images[i].thumb,
             class: 'b_gallery-b_thumb-e_img',
@@ -146,6 +120,7 @@ function creatThumbImg(iStart) {
             onclick: 'shift(null, '+i+')'
         }));
         thumb.append(thumbImg);
+        indexImg = i+1;
     }
     return thumbImg;
 }
@@ -156,20 +131,13 @@ function creatFullImg(index, src) {
     fullImg = $('<img/>', {
         src: src,
         class: 'b_gallery-b_showImg-e_img',
-        alt: 'photo '+index
+        alt: 'photo '+index,
+        onload: 'fullImgLoad()'
+
     }).css({
             'position': 'absolute',
             'top': '50%'
         });
-
-    if(index > images.length){
-        positionFullImg = 'opacity';
-        fullImg.css({
-            'left': '50%',
-            'margin': '-'+(fullImg.height)/2+'px auto auto -'+(fullImg.width)/2+'px',
-            'opacity': '0'
-        });
-    }else{
 
     if(index < currentImgId){
         positionFullImg = 'left';
@@ -187,17 +155,21 @@ function creatFullImg(index, src) {
         positionFullImg = 'opacity';
         fullImg.css({
             'left': '50%',
-            'margin': '-'+(images[index].height)/2+'px auto auto -'+(images[index].width)/2+'px',
+            'margin': '-'+(fullImg.height)/2+'px auto auto -'+(fullImg.width)/2+'px',
             'opacity': '0'
         });
     }
-    }
 
     fullImgWrap.append(fullImg);
-    setCookie('currentImgSrc', fullImg.attr('src'));
     setCookie('currentImgId', index);
+    setCookie('currentImgSrc', src);
     currentImgId = Number(index);
-    return fullImg;
+}
+
+function fullImgLoad() {
+    animateFullImg();
+    loading('hide');
+    getInfo();
 }
 
 function animateFullImg() {
@@ -214,42 +186,67 @@ function shift(how, index) {
     loading('show');
     index = (index == undefined || index == null)? currentImgId+how:index;
     if(index >= images.length){
-        index += 1;
         reloadingImg().done(function(){
             $('img#'+currentImgId).removeClass('m_active');
             $('img#'+index).addClass('m_active');
-            creatFullImg(index).load(function(){
-                animateFullImg();
-                loading('hide');
-                getInfo();
-            });
+            creatFullImg(index);
             redrawArrows(index);
             centeringThumbImg(index);
         })
     }else{
     $('img#'+currentImgId).removeClass('m_active');
     $('img#'+index).addClass('m_active');
-    creatFullImg(index).load(function(){
-        animateFullImg();
-        loading('hide');
-        getInfo();
-    });
+    creatFullImg(index);
     redrawArrows(index);
     centeringThumbImg(index);
     }
 }
 
-function redrawArrows(index) {
-    if(index == 0){
-        prev.hide(500);
-        next.show(500);
-    }else if(index == lastImg){
-        next.hide(500);
-        prev.show(500);
+function redrawArrows(index, visible) {
+
+    if(visible === false){
+        if(index > images.length-1){
+            nextVisible = false;
+            prevVisible = false;
+            next.hide(500);
+            prev.hide(500);
+        }
+        if(nextVisible === true){
+            nextVisible = false;
+            next.animate({opacity: '0'},500);
+        }
+        if(prevVisible === true){
+            prevVisible = false;
+            prev.animate({opacity: '0'},500);
+        }
     }else{
-        next.show(500);
-        prev.show(500);
+        if(index > images.length-1){
+            nextVisible = false;
+            prevVisible = false;
+            next.hide(500);
+            prev.hide(500);
+        }else if(index == 0){
+            prevVisible = false;
+            nextVisible = true;
+            prev.hide(500);
+            next.animate({opacity: '1.0'},500);
+            next.show(500);
+        }else if(index == lastImg){
+            nextVisible = false;
+            prevVisible = true;
+            next.hide(500);
+            prev.animate({opacity: '1.0'},500);
+            prev.show(500);
+        }else{
+            nextVisible = true;
+            prevVisible = true;
+            next.animate({opacity: '1.0'},500);
+            next.show(500);
+            prev.animate({opacity: '1.0'},500);
+            prev.show(500);
+        }
     }
+
 }
 
 // show/hide thumb begin
@@ -371,6 +368,10 @@ function setCookie(name, value, props) {
         if(propValue !== true){ updatedCookie += "=" + propValue }
     }
     document.cookie = updatedCookie;
+}
+
+function deleteCookie(name) {
+    setCookie(name, null, { expires: -1 })
 }
 // fullImg in coockie end
 
