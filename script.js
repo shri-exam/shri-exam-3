@@ -108,6 +108,7 @@ function downloadImg(url, iStart) {
             }
             if(i < 19){
                 lastImg = images.length-1;
+                console.log(lastImg);
             }
             downloadSetting.offsetPage = ';'+images[images.length-1].updated;
         })
